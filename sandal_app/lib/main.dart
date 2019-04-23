@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import './tempSubMenu.dart' as tempSubMenu;
 import './mainMenuList.dart' as mainMenuItemsList;
+import './Groups.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -35,6 +37,16 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
+//        child: Row(
+//          children: <Widget>[
+//            Column(
+//
+//            ),
+//            Column(
+//
+//            ),
+//          ],
+//        ),
         child: new GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
@@ -109,13 +121,15 @@ class _MyHomePageState extends State<MyHomePage> {
                         context,
                         new MaterialPageRoute(
                             builder: (_) =>
-                            new tempSubMenu.MyTempPage(
-                              tempId: mainMenuItemsList.list[index]['id'],
-                              tempName: mainMenuItemsList.list[index]['name'],
-                              tempIcon: mainMenuItemsList.list[index]['icon'],
-                              tempColor: mainMenuItemsList
-                                  .list[index]['color'],
-                            )
+                            // TODO: creating proper page
+                              new GroupsPage(title: widget.title)
+//                            new tempSubMenu.MyTempPage(
+//                              tempId: mainMenuItemsList.list[index]['id'],
+//                              tempName: mainMenuItemsList.list[index]['name'],
+//                              tempIcon: mainMenuItemsList.list[index]['icon'],
+//                              tempColor: mainMenuItemsList
+//                                  .list[index]['color'],
+//                            )
                         )
                     );
                   },
