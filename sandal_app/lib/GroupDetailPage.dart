@@ -25,7 +25,14 @@ class GroupDetailPage extends StatelessWidget{
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             // TODO: Enhance design (rather create any :P).
-            new Image.asset(group.image, width: 96.0, height: 96.0,),
+            new Hero(
+              tag: "group-hero-${group.id}",
+              child: new Image.asset(
+                group.image,
+                width: 96.0,
+                height: 96.0,
+              ),
+            ),
             new Text(group.name),
             new Text(group.description),
           ],

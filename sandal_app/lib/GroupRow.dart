@@ -95,6 +95,21 @@ class GroupRow extends StatelessWidget {
       ),
     );
 
+    final groupThumbnails = new Container(
+      margin: new EdgeInsets.symmetric(
+        vertical: 16.0
+      ),
+      alignment: FractionalOffset.centerLeft,
+      child: new Hero(
+        tag: "group-hero-${group.id}",
+        child: Image(
+          image: new AssetImage(group.image),
+          height: 92.0,
+          width: 92.0,
+        ),
+      ),
+    )
+
     return new GestureDetector(
       onTap: () => Navigator.of(context).push(new PageRouteBuilder(
         pageBuilder: (_,__,___) => new GroupDetailPage(group),
@@ -108,18 +123,19 @@ class GroupRow extends StatelessWidget {
           child: new Stack(
             children: <Widget>[
               groupCard,
-              new Container(
-                margin: new EdgeInsets.symmetric(
-                  vertical: 16.0,
-                ),
-                alignment: FractionalOffset.centerLeft,
-                child: new Image(
-//                image: new AssetImage("assets/img/$name.png"),
-                  image: new AssetImage(group.image),
-                  height: 92.0,
-                  width: 92.0,
-                ),
-              ),
+              groupThumbnails,
+//              new Container(
+//                margin: new EdgeInsets.symmetric(
+//                  vertical: 16.0,
+//                ),
+//                alignment: FractionalOffset.centerLeft,
+//                child: new Image(
+////                image: new AssetImage("assets/img/$name.png"),
+//                  image: new AssetImage(group.image),
+//                  height: 92.0,
+//                  width: 92.0,
+//                ),
+//              ),
 //            groupThumbnail,
             ],
           )
