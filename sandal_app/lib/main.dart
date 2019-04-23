@@ -58,32 +58,8 @@ class _MyHomePageState extends State<MyHomePage> {
             itemCount: mainMenuItemsList.list.length,
             itemBuilder: (BuildContext context, int index) {
               return new Container(
-                // TODO: Change sizes not to be hardcoded #2
-                child: GestureDetector(
-//                    child: new LayoutBuilder(
-////                      builder: (BuildContext context, BoxConstraints constraints) {
-////                        return Container(
-////                          height: constraints.maxHeight,
-////                          child: Stack(
-////                            children: <Widget>[
-////                              CircleAvatar(
-////                                backgroundColor: mainMenuItemsList
-////                                    .list[index]['color'],
-////                              ),
-////                              Positioned.fill(
-////                                child: new Icon(
-////                                  mainMenuItemsList
-////                                      .list[index]['icon'],
-////                                  // TODO: #2
-////                                  color: Colors.blue,
-////                                ),
-////                              ),
-////                            ],
-////                          ),
-////                        );
-////                      }
-////                    ),
-
+                  // TODO: Change sizes not to be hardcoded #2
+                  child: GestureDetector(
 //                    child: new CircleAvatar(
 //                      backgroundColor: mainMenuItemsList
 //                          .list[index]['color'],
@@ -96,32 +72,32 @@ class _MyHomePageState extends State<MyHomePage> {
 //                        //size: 30.0,
 //                        color: Colors.white,
 //                      ),
-                  child: Container(
-                    margin: EdgeInsets.all(15.0),
-                    child: CircleAvatar(
-                      backgroundColor: mainMenuItemsList.list[index]['color'],
-                      child: LayoutBuilder(
-                        builder: (BuildContext context,
-                            BoxConstraints constraints) {
-                          return new Icon(
-                            mainMenuItemsList
-                                .list[index]['icon'],
-                            // TODO: #2
-                            size: 0.7 * constraints.maxHeight,
+                    child: Container(
+                      margin: EdgeInsets.all(15.0),
+                      child: CircleAvatar(
+                        backgroundColor: mainMenuItemsList.list[index]['color'],
+                        child: LayoutBuilder(
+                          builder: (BuildContext context,
+                              BoxConstraints constraints) {
+                            return new Icon(
+                              mainMenuItemsList
+                                  .list[index]['icon'],
+                              // TODO: #2
+                              size: 0.7 * constraints.maxHeight,
 
-                            color: Colors.white,
-                          );
-                        },
+                              color: Colors.white,
+                            );
+                          },
+                        ),
                       ),
                     ),
-                  ),
 //                    ),
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        new MaterialPageRoute(
-                            builder: (_) =>
-                            // TODO: creating proper page
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          new MaterialPageRoute(
+                              builder: (_) =>
+                              // TODO: creating proper page
                               new GroupsPage(title: widget.title)
 //                            new tempSubMenu.MyTempPage(
 //                              tempId: mainMenuItemsList.list[index]['id'],
@@ -130,10 +106,10 @@ class _MyHomePageState extends State<MyHomePage> {
 //                              tempColor: mainMenuItemsList
 //                                  .list[index]['color'],
 //                            )
-                        )
-                    );
-                  },
-                ),
+                          )
+                      );
+                    },
+                  ),
               );
             }
         ),

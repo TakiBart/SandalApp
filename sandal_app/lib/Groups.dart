@@ -19,8 +19,7 @@ class GroupsPage extends StatelessWidget {
       ),
       body: Column(
         children: <Widget>[
-          new GroupsPageBody('temp'),
-          new GroupsPageBody('temp'),
+          new GroupsPageBody('temp')
         ],
       ),
     );

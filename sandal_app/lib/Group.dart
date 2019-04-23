@@ -12,6 +12,7 @@ class Group{
     this.time, this.leader, this.fbLink});
 }
 
+// TODO: Shorter time format? E.g. Pn, 21:00 (plebania).
 List<Group> groups = [
   const Group(
     id: "1",

@@ -16,22 +16,7 @@ class GroupRow extends StatelessWidget {
 //      width: 92.0,
 //    ),
 //  );
-  final groupCard = new Container(
-    height: 124.0,
-    margin: new EdgeInsets.only(left: 46.0),
-    decoration: new BoxDecoration(
-      color: Colors.blue,
-      shape: BoxShape.rectangle,
-      borderRadius: new BorderRadius.circular(8.0),
-      boxShadow: <BoxShadow>[
-        new BoxShadow(
-        color: Colors.black26,
-        blurRadius: 10.0,
-        offset: new Offset(0.0, 10.0),
-        ),
-      ],
-    ),
-  );
+
 
   final Group group;
 
@@ -39,7 +24,75 @@ class GroupRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-//    final groupCardContent = new Container
+    final groupCardContent = new Container(
+      margin: new EdgeInsets.fromLTRB(76.0, 16.0, 16.0, 16.0),
+      constraints: new BoxConstraints.expand(),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          new Container(height: 4.0),
+          new Text(group.name,
+            // TODO: Text styles
+//          style: ,
+          ),
+          new Container(height: 10.0,),
+          new Text(group.time,
+//            style: ,
+          ),
+          new Container(
+            margin: new EdgeInsets.symmetric(vertical: 8.0),
+            height: 2.0,
+            width: 18.0,
+            // TODO: Change color.
+            color: Colors.purple,
+          ),
+          new Row(
+            children: <Widget>[
+//              new Container(height: 12.0,),
+//              new Container(width: 8.0,),
+//              new Text(group.leader,
+////                style: ,
+//              ),
+//              new Container(width: 24.0,),
+//              new Container(height: 12.0,),
+//              new Container(width: 8.0,),
+//              new Text(group.time,
+////                style: ,
+//              ),
+              new Expanded(
+                child: Row(
+                  children: <Widget>[
+                    new Container(height: 12.0,),
+                    new Container(width: 8.0,),
+                    new Text(group.leader == null ? 'noLeader' : group.leader,
+//                style: ,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          )
+        ],
+      ),
+    );
+
+    final groupCard = new Container(
+      child: groupCardContent,
+      height: 124.0,
+      margin: new EdgeInsets.only(left: 46.0),
+      decoration: new BoxDecoration(
+        color: Colors.blue,
+        shape: BoxShape.rectangle,
+        borderRadius: new BorderRadius.circular(8.0),
+        boxShadow: <BoxShadow>[
+          new BoxShadow(
+            color: Colors.black26,
+            blurRadius: 10.0,
+            offset: new Offset(0.0, 10.0),
+          ),
+        ],
+      ),
+    );
 
     return new Container(
         margin: const EdgeInsets.symmetric(
