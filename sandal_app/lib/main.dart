@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import './tempSubMenu.dart' as tempSubMenu;
 import './mainMenuList.dart' as mainMenuItemsList;
 void main() => runApp(MyApp());
@@ -34,80 +35,94 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-          child: new GridView.builder(
+        child: new GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               mainAxisSpacing: 10.0,
               crossAxisSpacing: 10.0,
 //              childAspectRatio: 0.5,
             ),
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(20.0),
             itemCount: mainMenuItemsList.list.length,
             itemBuilder: (BuildContext context, int index) {
-              return new GridTile(
-                child: new Container(
-                  // TODO: Change sizes not to be hardcoded #2
-                  //height: 300.0,
-                  child: new GestureDetector(
-                    child:// new Column(
-//                      crossAxisAlignment: CrossAxisAlignment.center,
-//                      children: [
-//                        new SizedBox(
-//                          // TODO: #2
-//                          //height: 50.0,
-//                          //width: 100.0,
-//                          child: new Row(
-//                            children: <Widget>[
-                              new Stack(
-                                children: <Widget>[
-                                  new SizedBox(
-                                    child: new Container(
-                                      child: new CircleAvatar(
-                                        backgroundColor: mainMenuItemsList
-                                            .list[index]['color'],
-                                        // TODO: #2
-                                        //radius: 30.0,
-                                        child: new Icon(
-                                            mainMenuItemsList
-                                                .list[index]['icon'],
-                                            // TODO: #2
-                                            //size: 30.0,
-                                            color: Colors.white,
-                                        ),
+              return new Container(
+                // TODO: Change sizes not to be hardcoded #2
+                child: GestureDetector(
+//                    child: new LayoutBuilder(
+////                      builder: (BuildContext context, BoxConstraints constraints) {
+////                        return Container(
+////                          height: constraints.maxHeight,
+////                          child: Stack(
+////                            children: <Widget>[
+////                              CircleAvatar(
+////                                backgroundColor: mainMenuItemsList
+////                                    .list[index]['color'],
+////                              ),
+////                              Positioned.fill(
+////                                child: new Icon(
+////                                  mainMenuItemsList
+////                                      .list[index]['icon'],
+////                                  // TODO: #2
+////                                  color: Colors.blue,
+////                                ),
+////                              ),
+////                            ],
+////                          ),
+////                        );
+////                      }
+////                    ),
 
-                                      ),
-                                      padding: const EdgeInsets.only(
-                                        // TODO: #2
-                                          left: 5.0, right: 5.0
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-//                            ],
-//                          ),
-//                        ),
-//                      ],
+//                    child: new CircleAvatar(
+//                      backgroundColor: mainMenuItemsList
+//                          .list[index]['color'],
+//                      // TODO: #2
+//                      //radius: 30.0,
+//                      child: new Icon(
+//                        mainMenuItemsList
+//                            .list[index]['icon'],
+//                        // TODO: #2
+//                        //size: 30.0,
+//                        color: Colors.white,
+//                      ),
+                  child: Container(
+                    margin: EdgeInsets.all(15.0),
+                    child: CircleAvatar(
+                      backgroundColor: mainMenuItemsList.list[index]['color'],
+                      child: LayoutBuilder(
+                        builder: (BuildContext context,
+                            BoxConstraints constraints) {
+                          return new Icon(
+                            mainMenuItemsList
+                                .list[index]['icon'],
+                            // TODO: #2
+                            size: 0.7 * constraints.maxHeight,
+
+                            color: Colors.white,
+                          );
+                        },
+                      ),
+                    ),
+                  ),
 //                    ),
-                    onTap: () {
-                      Navigator.push(
+                  onTap: () {
+                    Navigator.push(
                         context,
                         new MaterialPageRoute(
-                          builder: (_) =>
-                              new tempSubMenu.MyTempPage(
-                                tempId: mainMenuItemsList.list[index]['id'],
-                                tempName: mainMenuItemsList.list[index]['name'],
-                                tempIcon: mainMenuItemsList.list[index]['icon'],
-                                tempColor: mainMenuItemsList.list[index]['color'],
-                              )
+                            builder: (_) =>
+                            new tempSubMenu.MyTempPage(
+                              tempId: mainMenuItemsList.list[index]['id'],
+                              tempName: mainMenuItemsList.list[index]['name'],
+                              tempIcon: mainMenuItemsList.list[index]['icon'],
+                              tempColor: mainMenuItemsList
+                                  .list[index]['color'],
+                            )
                         )
-                      );
-                    },
-                  ),
+                    );
+                  },
                 ),
               );
             }
-          ),
+        ),
       ),
     );
   }

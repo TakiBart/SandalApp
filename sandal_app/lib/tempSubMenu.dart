@@ -3,14 +3,12 @@ import 'package:flutter/material.dart';
 class MyTempPage extends StatefulWidget {
   MyTempPage(
       {Key key,
-      this.title = 'tempTitle',
       this.tempId = 'tempId',
       this.tempName = 'tempName',
       this.tempIcon = Icons.not_interested,
       this.tempColor = Colors.purple
       }) : super(key: key);
 
-  final String title;
   final tempId;
   final tempName;
   final tempIcon;
@@ -44,7 +42,7 @@ class _MyTempPageState extends State<MyTempPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(widget.tempName),
       ),
       body: Center(
         child: Column(
