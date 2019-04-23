@@ -58,10 +58,10 @@ class _MyTempPageState extends State<MyTempPage> {
               style: Theme.of(context).textTheme.display1,
             ),
             Text(
-              'id = ' + tempId,
+              'id = $tempId',
             ),
             Text(
-              'name = ' + tempName,
+              'name = $tempName',
             ),
             Icon(
               tempIcon,
