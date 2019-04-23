@@ -4,24 +4,34 @@ import './Group.dart';
 import './GroupDetailPage.dart';
 import './TextStyles.dart';
 
-class GroupRow extends StatelessWidget {
-  final name;
+// TODO: Some cleanups.
+
+class GroupSummary extends StatelessWidget {
+
   final Group group;
 
-  GroupRow(this.name, this.group);
+  // Field below probably won't be used.
+  final bool horizontal;
+
+  GroupSummary(this.group, {this.horizontal = true});
+
+  GroupSummary.vertical(this.group) : horizontal = false;
 
   @override
   Widget build(BuildContext context) {
     final groupCardContent = new Container(
-      margin: new EdgeInsets.fromLTRB(76.0, 16.0, 16.0, 16.0),
+      margin: new EdgeInsets.fromLTRB(
+          horizontal ? 76.0 : 16.0, horizontal ? 16.0 : 42.0, 16.0, 16.0),
       constraints: new BoxConstraints.expand(),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: horizontal
+            ? CrossAxisAlignment.start
+            : CrossAxisAlignment.center,
         children: <Widget>[
           new Container(height: 4.0),
           new Text(group.name,
             // TODO: Text styles
-            style: Style.titleTextStyle,
+            style: Style.headerTextStyle,
           ),
           new Container(height: 10.0,),
           new Text(group.time,
@@ -35,12 +45,14 @@ class GroupRow extends StatelessWidget {
             color: Colors.purple,
           ),
           new Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               new Expanded(
+                flex: horizontal ? 1 : 0,
                 child: Row(
                   children: <Widget>[
-                    new Container(height: 12.0,),
-                    new Container(width: 8.0,),
+                    new Container(height: 12.0),
+                    new Container(width: 8.0),
                     new Text(group.leader == null ? 'noLeader' : group.leader,
                       style: Style.smallTextStyle,
                     ),
@@ -55,8 +67,10 @@ class GroupRow extends StatelessWidget {
 
     final groupCard = new Container(
       child: groupCardContent,
-      height: 124.0,
-      margin: new EdgeInsets.only(left: 46.0),
+      height: horizontal ? 124.0 : 154.0,
+      margin: horizontal
+          ? new EdgeInsets.only(left: 46.0)
+          : new EdgeInsets.only(top: 72.0),
       decoration: new BoxDecoration(
         color: Colors.blue,
         shape: BoxShape.rectangle,
@@ -73,9 +87,10 @@ class GroupRow extends StatelessWidget {
 
     final groupThumbnails = new Container(
       margin: new EdgeInsets.symmetric(
-        vertical: 16.0
+          vertical: 16.0
       ),
-      alignment: FractionalOffset.centerLeft,
+      alignment: horizontal ? FractionalOffset.centerLeft : FractionalOffset
+          .center,
       child: new Hero(
         tag: "group-hero-${group.id}",
         child: Image(
@@ -87,10 +102,19 @@ class GroupRow extends StatelessWidget {
     );
 
     return new GestureDetector(
-      onTap: () => Navigator.of(context).push(new PageRouteBuilder(
-        pageBuilder: (_,__,___) => new GroupDetailPage(group),
-      )),
+      onTap: horizontal
+          ? () =>
+          Navigator.of(context).push(
+            new PageRouteBuilder(
+              pageBuilder: (_, __, ___) => new GroupDetailPage(group),
+              transitionsBuilder: (context, animation, secondaryAnimation,
+                  child) =>
+              new FadeTransition(opacity: animation, child: child),
+            ),
+          )
+          : null,
       child: new Container(
+//      height: 120.0,
           margin: const EdgeInsets.symmetric(
             vertical: 16.0,
             horizontal: 24.0,

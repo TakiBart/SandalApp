@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import './tempSubMenu.dart' as tempSubMenu;
 import './mainMenuList.dart' as mainMenuItemsList;
 import './Groups.dart';
-import './GroupDetailPage.dart';
 
 void main() => runApp(MyApp());
 

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 import './Group.dart';
+import './GroupSummary.dart';
+import './TextStyles.dart';
 
-class GroupDetailPage extends StatelessWidget{
+class GroupDetailPage extends StatelessWidget {
   final Group group;
 
   GroupDetailPage(this.group);
@@ -20,16 +22,16 @@ class GroupDetailPage extends StatelessWidget{
 //        ),
 //      ),
       body: new Container(
-        constraints: new BoxConstraints.expand(),
-        color: Colors.deepOrange,
-        child: new Stack (
-          children: <Widget>[
-            _getBackground(),
-            _getGradient(),
-//            _getContent(),
-//            _getToolbar(context),
-          ],
-        )
+          constraints: new BoxConstraints.expand(),
+          color: Colors.deepOrangeAccent,
+          child: new Stack (
+            children: <Widget>[
+              _getBackground(),
+              _getGradient(),
+              _getContent(),
+            _getToolbar(context),
+            ],
+          )
 //        child: new Column(
 //          mainAxisAlignment: MainAxisAlignment.center,
 //          children: <Widget>[
@@ -50,11 +52,11 @@ class GroupDetailPage extends StatelessWidget{
     );
   }
 
-  Container _getBackground(){
+  Container _getBackground() {
     return new Container(
       child: new Image.network(Group.picture,
-      fit: BoxFit.cover,
-      height: 300.0,
+        fit: BoxFit.cover,
+        height: 300.0,
       ),
       constraints: new BoxConstraints.expand(height: 300.0),
     );
@@ -68,7 +70,7 @@ class GroupDetailPage extends StatelessWidget{
         gradient: new LinearGradient(
           colors: <Color>[
             new Color(0x00000000),
-            Colors.deepOrange,
+            Colors.deepOrangeAccent,
           ],
           stops: [0.0, 0.9],
           begin: const FractionalOffset(0.0, 0.0),
@@ -78,6 +80,47 @@ class GroupDetailPage extends StatelessWidget{
     );
   }
 
-//  Widget _getContent
+  Widget _getContent() {
+    final _overviewTitle = "Overview".toUpperCase();
+    return new ListView(
+      padding: new EdgeInsets.fromLTRB(0.0, 72.0, 0.0, 32.0),
+      children: <Widget>[
+        new GroupSummary(group, horizontal: false),
+        new Container(
+          padding: new EdgeInsets.symmetric(horizontal: 32.0),
+          child: new Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              new Text(_overviewTitle,
+                style: Style.headerTextStyle,
+              ),
+              new Container(
+                margin: new EdgeInsets.symmetric(vertical: 8.0),
+                height: 2.0,
+                width: 18.0,
+                color: Colors.purple,
+
+              ),
+              new Text(group.description,
+                style: Style.commonTextStyle,
+              ),
+            ],
+          ),
+        )
+      ],
+    );
+  }
+
+  Container _getToolbar(BuildContext context) {
+    return new Container(
+      margin: new EdgeInsets.only(
+          top: MediaQuery
+              .of(context)
+              .padding
+              .top),
+      child: new BackButton(color: Colors.white),
+
+    );
+  }
 
 }
