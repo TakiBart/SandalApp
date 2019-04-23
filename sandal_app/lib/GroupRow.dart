@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import './Group.dart';
+import './GroupDetailPage.dart';
 
 class GroupRow extends StatelessWidget {
   final name;
@@ -94,29 +95,35 @@ class GroupRow extends StatelessWidget {
       ),
     );
 
-    return new Container(
-        margin: const EdgeInsets.symmetric(
-          vertical: 16.0,
-          horizontal: 24.0,
-        ),
-        child: new Stack(
-          children: <Widget>[
-            groupCard,
-            new Container(
-              margin: new EdgeInsets.symmetric(
-                vertical: 16.0,
-              ),
-              alignment: FractionalOffset.centerLeft,
-              child: new Image(
+    return new GestureDetector(
+      onTap: () => Navigator.of(context).push(new PageRouteBuilder(
+        pageBuilder: (_,__,___) => new GroupDetailPage(group),
+      )),
+      child: new Container(
+//      height: 120.0,
+          margin: const EdgeInsets.symmetric(
+            vertical: 16.0,
+            horizontal: 24.0,
+          ),
+          child: new Stack(
+            children: <Widget>[
+              groupCard,
+              new Container(
+                margin: new EdgeInsets.symmetric(
+                  vertical: 16.0,
+                ),
+                alignment: FractionalOffset.centerLeft,
+                child: new Image(
 //                image: new AssetImage("assets/img/$name.png"),
-                image: new AssetImage(group.image),
-                height: 92.0,
-                width: 92.0,
+                  image: new AssetImage(group.image),
+                  height: 92.0,
+                  width: 92.0,
+                ),
               ),
-            ),
 //            groupThumbnail,
-          ],
-        )
+            ],
+          )
+      ),
     );
   }
 }
