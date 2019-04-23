@@ -67,7 +67,7 @@ class GroupSummary extends StatelessWidget {
 
     final groupCard = new Container(
       child: groupCardContent,
-      height: horizontal ? 124.0 : 154.0,
+      height: horizontal ? 174.0 : 154.0,
       margin: horizontal
           ? new EdgeInsets.only(left: 46.0)
           : new EdgeInsets.only(top: 72.0),

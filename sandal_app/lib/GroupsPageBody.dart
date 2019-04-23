@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import './Group.dart';
-import './GroupRow.dart';
+import './GroupSummary.dart';
 
 class GroupsPageBody extends StatelessWidget {
   final name;
@@ -10,21 +10,11 @@ class GroupsPageBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-//    return new GroupRow(name, groups[0]);
     return new Expanded(
-
-    // Way with ListView.builder
-//      child: ListView.builder(
-//        itemBuilder: (context, index) => new GroupRow(name, groups[index]),
-//        itemCount: groups.length,
-//        itemExtent: 152.0,
-//        padding: new EdgeInsets.symmetric(vertical: 16.0),
-//      ),
-
     // Way with Slivers
     child: new Container(
       // Background
-      color: Colors.white,
+      color: Colors.indigo,
       child: new CustomScrollView(
         scrollDirection: Axis.vertical,
         slivers: <Widget>[
@@ -32,10 +22,10 @@ class GroupsPageBody extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 24.0),
             sliver: new SliverFixedExtentList(
               delegate: new SliverChildBuilderDelegate(
-                  (context, index) => new GroupRow(name, groups[index]),
+                  (context, index) => new GroupSummary(groups[index]),
                 childCount: groups.length,
               ),
-              itemExtent: 152.0,
+              itemExtent: 192.0,
             ),
           ),
         ],
