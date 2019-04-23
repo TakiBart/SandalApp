@@ -8,6 +8,9 @@ class Group{
   // TODO: How to implement link.
   final String fbLink;
 
+  // photo by Dan
+  static final String picture = "http://dasandal.pl/public/.imaging/mte/dasandal-theme/large/dam/galeries/Holandia-2018/_DSC2470.jpg/jcr:content/_DSC2470.jpg";
+
   const Group({this.id, this.name, this.image, this.description,
     this.time, this.leader, this.fbLink});
 }
