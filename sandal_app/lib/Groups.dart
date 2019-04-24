@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import './GroupsPageBody.dart';
 import './TextStyles.dart';
+import './colors.dart';
 
 class GroupsPage extends StatelessWidget {
   GroupsPage(
@@ -20,7 +21,7 @@ class GroupsPage extends StatelessWidget {
           style: Style.titleTextStyle,
         ),
         iconTheme: IconThemeData(
-          color: Colors.white,
+          color: colors['appbarIconTheme'],
         ),
       ),
       body: Column(

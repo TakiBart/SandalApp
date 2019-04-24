@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import './TextStyles.dart';
+import './colors.dart';
 
 class MyTempPage extends StatefulWidget {
   MyTempPage(
@@ -49,11 +50,12 @@ class _MyTempPageState extends State<MyTempPage> {
           style: Style.titleTextStyle,
         ),
         iconTheme: IconThemeData(
-          color: Colors.white,
+          color: MyColors.appbarIconTheme,
         ),
       ),
       body: Container(
         color: Colors.indigoAccent,
+        padding: EdgeInsets.all(16.0),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -61,6 +63,7 @@ class _MyTempPageState extends State<MyTempPage> {
               Text(
                 'You have pushed the button this many times:',
                 style: Style.headerTextStyle,
+                textAlign: TextAlign.center,
               ),
               Container(
                 margin: EdgeInsets.symmetric(vertical: 16.0),

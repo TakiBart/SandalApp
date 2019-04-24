@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import './Group.dart';
 import './GroupSummary.dart';
+import './colors.dart';
 
 class GroupsPageBody extends StatelessWidget {
   final name;
@@ -14,7 +15,7 @@ class GroupsPageBody extends StatelessWidget {
     // Way with Slivers
     child: new Container(
       // Background
-      color: Colors.indigo,
+      color: colors['groupPageBody'],
       child: new CustomScrollView(
         scrollDirection: Axis.vertical,
         slivers: <Widget>[

@@ -65,7 +65,8 @@ class GroupSummary extends StatelessWidget {
                           new Container(height: 12.0),
                           new Container(width: 8.0),
                           new Text(
-                            group.leader == null ? 'noLeader' : group.leader,
+//                            group.leader == null ? 'noLeader' : group.leader,
+                            group.shortDescription,
                             style: Style.smallTextStyle,
                           ),
                         ],
