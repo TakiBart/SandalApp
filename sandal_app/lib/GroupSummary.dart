@@ -7,7 +7,6 @@ import './TextStyles.dart';
 // TODO: Some cleanups.
 
 class GroupSummary extends StatelessWidget {
-
   final Group group;
 
   // Field below probably won't be used.
@@ -24,43 +23,59 @@ class GroupSummary extends StatelessWidget {
           horizontal ? 76.0 : 16.0, horizontal ? 16.0 : 42.0, 16.0, 16.0),
       constraints: new BoxConstraints.expand(),
       child: Column(
-        crossAxisAlignment: horizontal
-            ? CrossAxisAlignment.start
-            : CrossAxisAlignment.center,
+        crossAxisAlignment:
+            horizontal ? CrossAxisAlignment.start : CrossAxisAlignment.center,
         children: <Widget>[
           new Container(height: 4.0),
-          new Text(group.name,
+          new Text(
+            group.shortName,
             // TODO: Text styles
             style: Style.headerTextStyle,
-          ),
-          new Container(height: 10.0,),
-          new Text(group.time,
-            style: Style.smallTextStyle,
+            textAlign: TextAlign.center,
           ),
           new Container(
-            margin: new EdgeInsets.symmetric(vertical: 8.0),
-            height: 2.0,
-            width: 18.0,
-            // TODO: Change color.
-            color: Colors.purple,
+            height: 10.0,
           ),
-          new Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              new Expanded(
-                flex: horizontal ? 1 : 0,
-                child: Row(
+          new Text(
+            group.time,
+            style: Style.smallTextStyle,
+          ),
+          // TODO: If there is no leader, don't show Expanded below.
+          new Expanded(
+            child: Column(
+              children: <Widget>[
+                new Container(
+                  margin: new EdgeInsets.symmetric(vertical: 8.0),
+                  height: 2.0,
+                  width: 18.0,
+                  alignment: Alignment.bottomLeft,
+                  // TODO: Change color.
+                  // TODO: Move colors to some res/colors.
+                  // TODO: Arrange GroupSummary view.
+                  color: Colors.white70,
+                ),
+                new Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: <Widget>[
-                    new Container(height: 12.0),
-                    new Container(width: 8.0),
-                    new Text(group.leader == null ? 'noLeader' : group.leader,
-                      style: Style.smallTextStyle,
+                    new Expanded(
+                      flex: horizontal ? 1 : 0,
+                      child: Row(
+                        children: <Widget>[
+                          new Container(height: 12.0),
+                          new Container(width: 8.0),
+                          new Text(
+                            group.leader == null ? 'noLeader' : group.leader,
+                            style: Style.smallTextStyle,
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
-              ),
-            ],
-          )
+              ],
+            ),
+          ),
         ],
       ),
     );
@@ -86,11 +101,9 @@ class GroupSummary extends StatelessWidget {
     );
 
     final groupThumbnails = new Container(
-      margin: new EdgeInsets.symmetric(
-          vertical: 16.0
-      ),
-      alignment: horizontal ? FractionalOffset.centerLeft : FractionalOffset
-          .center,
+      margin: new EdgeInsets.symmetric(vertical: 16.0),
+      alignment:
+          horizontal ? FractionalOffset.centerLeft : FractionalOffset.center,
       child: new Hero(
         tag: "group-hero-${group.id}",
         child: Container(
@@ -109,15 +122,14 @@ class GroupSummary extends StatelessWidget {
 
     return new GestureDetector(
       onTap: horizontal
-          ? () =>
-          Navigator.of(context).push(
-            new PageRouteBuilder(
-              pageBuilder: (_, __, ___) => new GroupDetailPage(group),
-              transitionsBuilder: (context, animation, secondaryAnimation,
-                  child) =>
-              new FadeTransition(opacity: animation, child: child),
-            ),
-          )
+          ? () => Navigator.of(context).push(
+                new PageRouteBuilder(
+                  pageBuilder: (_, __, ___) => new GroupDetailPage(group),
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) =>
+                          new FadeTransition(opacity: animation, child: child),
+                ),
+              )
           : null,
       child: new Container(
 //      height: 120.0,
@@ -130,8 +142,7 @@ class GroupSummary extends StatelessWidget {
               groupCard,
               groupThumbnails,
             ],
-          )
-      ),
+          )),
     );
   }
 }
