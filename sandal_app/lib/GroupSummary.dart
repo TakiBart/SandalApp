@@ -93,10 +93,16 @@ class GroupSummary extends StatelessWidget {
           .center,
       child: new Hero(
         tag: "group-hero-${group.id}",
-        child: Image(
-          image: new AssetImage(group.image),
+        child: Container(
           height: 92.0,
           width: 92.0,
+          decoration: new BoxDecoration(
+            shape: BoxShape.circle,
+            image: new DecorationImage(
+              image: new AssetImage(group.image),
+              fit: BoxFit.fill,
+            ),
+          ),
         ),
       ),
     );

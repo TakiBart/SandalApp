@@ -6,7 +6,6 @@ import './TextStyles.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -28,13 +27,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title,
-                style: Style.titleTextStyle,
+        title: Text(
+          widget.title,
+          style: Style.titleTextStyle,
         ),
       ),
       body: Center(
@@ -49,40 +48,43 @@ class _MyHomePageState extends State<MyHomePage> {
             itemCount: mainMenuItemsList.list.length,
             itemBuilder: (BuildContext context, int index) {
               return new Container(
-                  // TODO: Change sizes not to be hardcoded #2
-                  child: GestureDetector(
-                    child: Container(
-                      margin: EdgeInsets.all(15.0),
-                      child: CircleAvatar(
-                        backgroundColor: mainMenuItemsList.list[index]['color'],
-                        child: LayoutBuilder(
-                          builder: (BuildContext context,
-                              BoxConstraints constraints) {
-                            return new Icon(
-                              mainMenuItemsList
-                                  .list[index]['icon'],
-                              // TODO: #2
-                              size: 0.7 * constraints.maxHeight,
+                // TODO: Change sizes not to be hardcoded #2
+                child: GestureDetector(
+                  child: Container(
+                    margin: EdgeInsets.all(15.0),
+                    child:
+                        //CircleAvatar(
+//                      backgroundColor: mainMenuItemsList.list[index]['color'],
+                        Container(
+//                        color: mainMenuItemsList.list[index]['color'],
+                      decoration: new BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: mainMenuItemsList.list[index]['color'],
+                      ),
+                      child: LayoutBuilder(
+                        builder:
+                            (BuildContext context, BoxConstraints constraints) {
+                          return new Icon(
+                            mainMenuItemsList.list[index]['icon'],
+                            // TODO: #2
+                            size: 0.7 * constraints.maxHeight,
 
-                              color: Colors.white,
-                            );
-                          },
-                        ),
+                            color: Colors.white,
+                          );
+                        },
                       ),
                     ),
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          new MaterialPageRoute(
-                              builder: mainMenuItemsList.list[index]['builder'],
-
-                          )
-                      );
-                    },
                   ),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        new MaterialPageRoute(
+                          builder: mainMenuItemsList.list[index]['builder'],
+                        ));
+                  },
+                ),
               );
-            }
-        ),
+            }),
       ),
     );
   }
