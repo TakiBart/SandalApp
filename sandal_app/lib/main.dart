@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-import './tempSubMenu.dart' as tempSubMenu;
 import './mainMenuList.dart' as mainMenuItemsList;
+import './TextStyles.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'DA Sł',
+      title: 'DA Sandał',
       theme: ThemeData(
         primarySwatch: Colors.orange,
       ),
@@ -27,12 +27,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(
+          widget.title,
+          style: Style.titleTextStyle,
+        ),
       ),
       body: Center(
         child: new GridView.builder(
@@ -48,52 +50,22 @@ class _MyHomePageState extends State<MyHomePage> {
               return new Container(
                 // TODO: Change sizes not to be hardcoded #2
                 child: GestureDetector(
-//                    child: new LayoutBuilder(
-////                      builder: (BuildContext context, BoxConstraints constraints) {
-////                        return Container(
-////                          height: constraints.maxHeight,
-////                          child: Stack(
-////                            children: <Widget>[
-////                              CircleAvatar(
-////                                backgroundColor: mainMenuItemsList
-////                                    .list[index]['color'],
-////                              ),
-////                              Positioned.fill(
-////                                child: new Icon(
-////                                  mainMenuItemsList
-////                                      .list[index]['icon'],
-////                                  // TODO: #2
-////                                  color: Colors.blue,
-////                                ),
-////                              ),
-////                            ],
-////                          ),
-////                        );
-////                      }
-////                    ),
-
-//                    child: new CircleAvatar(
-//                      backgroundColor: mainMenuItemsList
-//                          .list[index]['color'],
-//                      // TODO: #2
-//                      //radius: 30.0,
-//                      child: new Icon(
-//                        mainMenuItemsList
-//                            .list[index]['icon'],
-//                        // TODO: #2
-//                        //size: 30.0,
-//                        color: Colors.white,
-//                      ),
                   child: Container(
                     margin: EdgeInsets.all(15.0),
-                    child: CircleAvatar(
-                      backgroundColor: mainMenuItemsList.list[index]['color'],
+                    child:
+                        //CircleAvatar(
+//                      backgroundColor: mainMenuItemsList.list[index]['color'],
+                        Container(
+//                        color: mainMenuItemsList.list[index]['color'],
+                      decoration: new BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: mainMenuItemsList.list[index]['color'],
+                      ),
                       child: LayoutBuilder(
-                        builder: (BuildContext context,
-                            BoxConstraints constraints) {
+                        builder:
+                            (BuildContext context, BoxConstraints constraints) {
                           return new Icon(
-                            mainMenuItemsList
-                                .list[index]['icon'],
+                            mainMenuItemsList.list[index]['icon'],
                             // TODO: #2
                             size: 0.7 * constraints.maxHeight,
 
@@ -103,26 +75,16 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                   ),
-//                    ),
                   onTap: () {
                     Navigator.push(
                         context,
                         new MaterialPageRoute(
-                            builder: (_) =>
-                            new tempSubMenu.MyTempPage(
-                              tempId: mainMenuItemsList.list[index]['id'],
-                              tempName: mainMenuItemsList.list[index]['name'],
-                              tempIcon: mainMenuItemsList.list[index]['icon'],
-                              tempColor: mainMenuItemsList
-                                  .list[index]['color'],
-                            )
-                        )
-                    );
+                          builder: mainMenuItemsList.list[index]['builder'],
+                        ));
                   },
                 ),
               );
-            }
-        ),
+            }),
       ),
     );
   }
