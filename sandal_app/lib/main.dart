@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-import './tempSubMenu.dart' as tempSubMenu;
 import './mainMenuList.dart' as mainMenuItemsList;
-import './Groups.dart';
+import './TextStyles.dart';
 
 void main() => runApp(MyApp());
 
@@ -16,9 +15,6 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.orange,
       ),
       home: MyHomePage(title: 'DA Sandał'),
-//      routes: <String, WidgetBuilder>{
-//        '/detail': (_) => new GroupDetailPage(),
-//      },
     );
   }
 }
@@ -37,19 +33,11 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(widget.title,
+                style: Style.titleTextStyle,
+        ),
       ),
       body: Center(
-//        child: Row(
-//          children: <Widget>[
-//            Column(
-//
-//            ),
-//            Column(
-//
-//            ),
-//          ],
-//        ),
         child: new GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
@@ -63,18 +51,6 @@ class _MyHomePageState extends State<MyHomePage> {
               return new Container(
                   // TODO: Change sizes not to be hardcoded #2
                   child: GestureDetector(
-//                    child: new CircleAvatar(
-//                      backgroundColor: mainMenuItemsList
-//                          .list[index]['color'],
-//                      // TODO: #2
-//                      //radius: 30.0,
-//                      child: new Icon(
-//                        mainMenuItemsList
-//                            .list[index]['icon'],
-//                        // TODO: #2
-//                        //size: 30.0,
-//                        color: Colors.white,
-//                      ),
                     child: Container(
                       margin: EdgeInsets.all(15.0),
                       child: CircleAvatar(
@@ -94,21 +70,12 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                     ),
-//                    ),
                     onTap: () {
                       Navigator.push(
                           context,
                           new MaterialPageRoute(
-                              builder: (_) =>
-                              // TODO: creating proper page
-                              new GroupsPage(title: widget.title)
-//                            new tempSubMenu.MyTempPage(
-//                              tempId: mainMenuItemsList.list[index]['id'],
-//                              tempName: mainMenuItemsList.list[index]['name'],
-//                              tempIcon: mainMenuItemsList.list[index]['icon'],
-//                              tempColor: mainMenuItemsList
-//                                  .list[index]['color'],
-//                            )
+                              builder: mainMenuItemsList.list[index]['builder'],
+
                           )
                       );
                     },
