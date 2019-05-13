@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
@@ -30,7 +30,7 @@ class Post{
   }
 }
 
-class Image{
+class Image {
   final int imageID;
   final String url;
   final String author;
@@ -38,6 +38,7 @@ class Image{
   final DateTime creationDate;
 
   Image({this.imageID, this.url, this.author, this.body, this.creationDate});
+
   factory Image.fromJson(Map<String, dynamic> json){
     return Image(
         imageID: json['imageID'],
@@ -48,6 +49,15 @@ class Image{
     );
   }
 
+  Future<Image> fetchImage() async {
+    final response = await http.get(""); //TODO: Fill the address
+    if (response.statusCode == 200) {
+      return Image.fromJson(json.decode(response.body));
+    }
+    else {
+      throw Exception('Failed to load image');
+    }
+  }
 }
 
 class CalendarEvent {
@@ -57,16 +67,24 @@ class CalendarEvent {
   final String creationDate;
   final String eventDate;
 
-  CalendarEvent({this.eventID, this.author, this.body, this.creationDate,
-    this.eventDate});
+  CalendarEvent({this.eventID, this.author, this.body, this.creationDate, this.eventDate});
   factory CalendarEvent.fromJson(Map<String, dynamic> json){
-    return CalendarEvent(
-      eventID: json['eventID'],
-      author: json['author'],
-      body: json['body'],
-      creationDate: json['creationDate'],
-      eventDate: json['eventDate']
-    );
+      return CalendarEvent(
+          eventID: json['eventID'],
+          author: json['author'],
+          body: json['body'],
+          creationDate: json['creationDate'],
+          eventDate: json['eventDate']
+     );
   }
+  Future<CalendarEvent> fetchCalendarEvent() async{
+    final response = await http.get(""); //TODO: Fill the address
+    if(response.statusCode == 200){
+        return CalendarEvent.fromJson(json.decode(response.body));
+      }
+    else{
+      throw Exception('Failed to load event');
+    }
 
+  }
 }
