@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 import './mainMenuList.dart' as mainMenuItemsList;
-import './TextStyles.dart';
+import './Styles.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 void main() => runApp(MyApp());
+
 
 class MyApp extends StatelessWidget {
   @override

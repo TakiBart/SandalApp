@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import './GroupsPageBody.dart';
-import './TextStyles.dart';
+import './Styles.dart';
 import './colors.dart';
 
 class GroupsPage extends StatelessWidget {

@@ -34,17 +34,17 @@ class Image {
   final int imageID;
   final String url;
   final String author;
-  final String body; //description
+  final String description; //description
   final DateTime creationDate;
 
-  Image({this.imageID, this.url, this.author, this.body, this.creationDate});
+  Image({this.imageID, this.url, this.author, this.description, this.creationDate});
 
   factory Image.fromJson(Map<String, dynamic> json){
     return Image(
         imageID: json['imageID'],
         url: json['url'],
         author: json['author'],
-        body: json['body'],
+        description: json['description'],
         creationDate: json['creationDate']
     );
   }
@@ -65,7 +65,7 @@ class CalendarEvent {
   final String author;
   final String body;
   final String creationDate;
-  final String eventDate;
+  final DateTime eventDate;
 
   CalendarEvent({this.eventID, this.author, this.body, this.creationDate, this.eventDate});
   factory CalendarEvent.fromJson(Map<String, dynamic> json){

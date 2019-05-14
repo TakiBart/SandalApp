@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './TextStyles.dart';
+import './Styles.dart';
 import './colors.dart';
 
 class MyTempPage extends StatefulWidget {
