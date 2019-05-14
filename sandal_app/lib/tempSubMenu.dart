@@ -6,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 class CommentsSectionPage extends StatefulWidget{
+  @override
   _CommentsListedPageState createState() => _CommentsListedPageState();
 }
 class _CommentsListedPageState extends State<CommentsSectionPage>{
@@ -47,15 +48,61 @@ class _CommentsListedPageState extends State<CommentsSectionPage>{
               ),
             ]),
     onTap: () =>{
-          
+      //TODO: Uciszyć albo co
+      Navigator.push((context), MaterialPageRoute(builder: (context) => _CommentDetailsPage(document['title'],document['author'],document['body'])))
     },);
   }
 }
-class _CommentDetailsPageState extends State<CommentsSectionPage>{
+class _CommentDetailsPage extends StatelessWidget{
+  String title;
+  String author;
+  String body;
+
+  _CommentDetailsPage(String title, String author, String body){
+    this.title=title;
+    this.author=author;
+    this.body=body;
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(title)
+      ),
+      body:
+        Container(
+          child: Column(
+            children: <Widget>[
+              Text(author),
+              Text(body),
+            ],
+          ),
+      )
+
+    );
+    // TODO: implement build
+    // arrow to get back to listed state
+    return null;
+  }
+
+}
+
+class CalendarSectionPage extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState() => _CalendarGeneralPageState();
+
+}
+class _CalendarGeneralPageState extends State<CommentsSectionPage>{
+  @override
+  Widget build(BuildContext context) {
+    return null;
+  }
+
+}
+class _CalendarDayDetailsPage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    // arrow to get back to listed state
     return null;
   }
 
