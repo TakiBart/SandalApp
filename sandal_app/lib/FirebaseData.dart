@@ -5,15 +5,16 @@ import 'dart:convert';
 
 //Date will be send in ISO 8601 format
 class Post{
-  final int postID;
+
   final String author;
+  final String title;
   final String body;
   final DateTime creationDate;
 
-  Post({this.postID, this.author, this.body, this.creationDate});
+  Post({ this.author, this.title, this.body, this.creationDate});
   factory Post.fromJson(Map<String, dynamic> json){
     return Post(
-      postID: json['postID'],
+      title: json['title'],
       author: json['author'],
       body: json['body'],
       creationDate: json['creationDate']
@@ -31,17 +32,15 @@ class Post{
 }
 
 class Image {
-  final int imageID;
   final String url;
   final String author;
   final String description; //description
   final DateTime creationDate;
 
-  Image({this.imageID, this.url, this.author, this.description, this.creationDate});
+  Image({ this.url, this.author, this.description, this.creationDate});
 
   factory Image.fromJson(Map<String, dynamic> json){
     return Image(
-        imageID: json['imageID'],
         url: json['url'],
         author: json['author'],
         description: json['description'],
@@ -61,16 +60,14 @@ class Image {
 }
 
 class CalendarEvent {
-  final int eventID;
   final String author;
   final String body;
   final String creationDate;
   final DateTime eventDate;
 
-  CalendarEvent({this.eventID, this.author, this.body, this.creationDate, this.eventDate});
+  CalendarEvent({this.author, this.body, this.creationDate, this.eventDate});
   factory CalendarEvent.fromJson(Map<String, dynamic> json){
       return CalendarEvent(
-          eventID: json['eventID'],
           author: json['author'],
           body: json['body'],
           creationDate: json['creationDate'],

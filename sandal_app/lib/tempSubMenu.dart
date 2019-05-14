@@ -2,6 +2,64 @@ import 'package:flutter/material.dart';
 
 import './Styles.dart';
 import './colors.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+
+class CommentsSectionPage extends StatefulWidget{
+  _CommentsListedPageState createState() => _CommentsListedPageState();
+}
+class _CommentsListedPageState extends State<CommentsSectionPage>{
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Sekcja komentarzy"),
+      ),
+
+      body: StreamBuilder(
+        stream: Firestore.instance.collection('posts').snapshots(),
+        builder: (context, snapshot){
+          if(!snapshot.hasData)
+            return Text("Proszę czekać");
+          return ListView.builder(
+            itemExtent: 100,
+            itemCount: snapshot.data.documents.length,
+            itemBuilder: (context, index) =>_buildListSingleItem(context, snapshot.data.documents[index]),
+          );
+        }
+      )
+    );
+  }
+  Widget _buildListSingleItem(BuildContext context, DocumentSnapshot document){
+    return ListTile(
+        title: Column(
+            children: <Widget>[
+              Expanded(
+                  child: Text(
+                      document.data['author'] + ": "+ document.data['title'],
+                      style:Theme.of(context).textTheme.headline
+                  )
+              ),
+              Container(
+                  padding: EdgeInsets.all(10.0),
+                  child: Text(
+                      document.data['body'])
+              ),
+            ]),
+    onTap: () =>{
+          
+    },);
+  }
+}
+class _CommentDetailsPageState extends State<CommentsSectionPage>{
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    // arrow to get back to listed state
+    return null;
+  }
+
+}
 
 class MyTempPage extends StatefulWidget {
   MyTempPage(

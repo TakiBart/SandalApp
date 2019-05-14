@@ -11,12 +11,13 @@ List list = [
     // TODO: Ikona będzie pokolorowana czy przekazujemy kolor (albo dwa)?
     "color": Colors.orange,
     "builder": (_) =>
-    new MyTempPage(
-      tempId: "tempSubMenu",
-      tempName: "Komentarz",
-      tempIcon: Icons.comment,
-      tempColor: Colors.orange,
-    )
+//    new MyTempPage(
+//      tempId: "tempSubMenu",
+//      tempName: "Komentarz",
+//      tempIcon: Icons.comment,
+//      tempColor: Colors.orange,
+//    )
+      new CommentsSectionPage()
   },
   {
     "id": "tempSubMenu",
