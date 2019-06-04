@@ -70,7 +70,6 @@ class _MyHomePageState extends State<MyHomePage> {
                             mainMenuItemsList.list[index]['icon'],
                             // TODO: #2
                             size: 0.7 * constraints.maxHeight,
-
                             color: Colors.white,
                           );
                         },

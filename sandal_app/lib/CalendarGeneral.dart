@@ -14,6 +14,8 @@ final Map<DateTime, List> _holidays = {
   DateTime(2019, 6, 19): ['Boże Ciało'],
 };
 
+// TODO: Permissions for Android (calendar)
+
 class CalendarGeneralPage extends StatefulWidget{
   CalendarGeneralPage({Key key, this.title}) : super(key: key);
 
@@ -33,6 +35,7 @@ class _CalendarGeneralPageState extends State<CalendarGeneralPage> with TickerPr
 
   // TODO: fetch holidays from some web API?
   // TODO: fetch events from Firestore?
+  // TODO: różne kolory dla różnych wydarzeń?
 
   @override
   void initState() {
@@ -46,7 +49,7 @@ class _CalendarGeneralPageState extends State<CalendarGeneralPage> with TickerPr
       _selectedDay.subtract(Duration(days: 10)): ['Event A4', 'Event B4', 'Event C4'],
       _selectedDay.subtract(Duration(days: 4)): ['Event A5', 'Event B5', 'Event C5'],
       _selectedDay.subtract(Duration(days: 2)): ['Event A6', 'Event B6'],
-      _selectedDay: ['Event A7', 'Event B7', 'Event C7', 'Event D7'],
+      _selectedDay: ['Event A7', 'Event B7', 'Event C7', 'Event D7', 'Event E7'],
       _selectedDay.add(Duration(days: 1)): ['Event A8', 'Event B8', 'Event C8', 'Event D8'],
       _selectedDay.add(Duration(days: 3)): Set.from(['Event A9', 'Event A9', 'Event B9']).toList(),
       _selectedDay.add(Duration(days: 7)): ['Event A10', 'Event B10', 'Event C10'],
