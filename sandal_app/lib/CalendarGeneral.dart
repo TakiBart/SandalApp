@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:date_utils/date_utils.dart';
 import 'package:table_calendar/table_calendar.dart';
-
+import 'package:add_2_calendar/add_2_calendar.dart';
 
 final Map<DateTime, List> _holidays = {
   DateTime(2019, 1, 1): ['New Year\'s Day'],
@@ -28,6 +28,7 @@ class _CalendarGeneralPageState extends State<CalendarGeneralPage> with TickerPr
   List _selectedEvents;
   AnimationController _controller;
 
+  // TODO: fetch holidays from some web API?
   // TODO: fetch events from Firestore?
 
   @override
@@ -100,10 +101,8 @@ class _CalendarGeneralPageState extends State<CalendarGeneralPage> with TickerPr
       body: Column(
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
-          // Switch out 2 lines below to play with TableCalendar's settings
-          //-----------------------
           _buildTableCalendar(),
-          // _buildTableCalendarWithBuilders(),
+//           _buildTableCalendarWithBuilders(),
           const SizedBox(height: 8.0),
           Expanded(child: _buildEventList()),
         ],
@@ -126,11 +125,13 @@ class _CalendarGeneralPageState extends State<CalendarGeneralPage> with TickerPr
         CalendarFormat.twoWeeks: '2 weeks',
         CalendarFormat.week: 'Week',
       },
+      // TODO: move colors to colors.dart
       calendarStyle: CalendarStyle(
         selectedColor: Colors.deepOrange[400],
         todayColor: Colors.deepOrange[200],
         markersColor: Colors.brown[700],
       ),
+      // TODO: move TextStyle to Styles.dart
       headerStyle: HeaderStyle(
         formatButtonTextStyle: TextStyle().copyWith(color: Colors.white, fontSize: 15.0),
         formatButtonDecoration: BoxDecoration(
@@ -157,6 +158,7 @@ class _CalendarGeneralPageState extends State<CalendarGeneralPage> with TickerPr
         CalendarFormat.month: '',
         CalendarFormat.week: '',
       },
+      // TODO: colors styles and colors
       calendarStyle: CalendarStyle(
         outsideDaysVisible: false,
         weekendStyle: TextStyle().copyWith(color: Colors.blue[800]),
@@ -275,7 +277,21 @@ class _CalendarGeneralPageState extends State<CalendarGeneralPage> with TickerPr
         margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
         child: ListTile(
           title: Text(event.toString()),
-          onTap: () => print('$event tapped!'),
+          // TODO: Export event onTap
+          // How I see it: events have IDs, onTap we can show details screen
+          // with "Add to my calendar" button
+          onTap: () {
+            print('$event tapped!');
+            DateTime now = DateTime.now();
+            Event eventToAdd = Event(
+              title: 'testTitle: $event',
+              description: 'Siódemka',
+              location: "Kościół pw. Najśw. Zbawiciela",
+              startDate: DateTime(now.year, now.month, now.day, now.hour, now.minute),
+              endDate: DateTime(now.year, now.month, now.day, now.hour, now.minute),
+            );
+            Add2Calendar.addEvent2Cal(eventToAdd);
+          }
         ),
       ))
           .toList(),
