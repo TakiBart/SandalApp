@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import './mainMenuList.dart' as mainMenuItemsList;
 import './Styles.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
