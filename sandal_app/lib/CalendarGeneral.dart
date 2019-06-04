@@ -3,6 +3,9 @@ import 'package:date_utils/date_utils.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:add_2_calendar/add_2_calendar.dart';
 
+import './colors.dart';
+import './Styles.dart';
+
 final Map<DateTime, List> _holidays = {
   DateTime(2019, 1, 1): ['New Year\'s Day'],
   DateTime(2019, 1, 6): ['Epiphany'],
@@ -96,7 +99,12 @@ class _CalendarGeneralPageState extends State<CalendarGeneralPage> with TickerPr
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(widget.title,
+          style: Style.titleTextStyle,
+        ),
+        iconTheme: IconThemeData(
+          color: colors['appbarIconTheme']
+        ),
       ),
       body: Column(
         mainAxisSize: MainAxisSize.max,
@@ -280,6 +288,7 @@ class _CalendarGeneralPageState extends State<CalendarGeneralPage> with TickerPr
           // TODO: Export event onTap
           // How I see it: events have IDs, onTap we can show details screen
           // with "Add to my calendar" button
+          // but, for now, it's simpler - onTap is adding test event
           onTap: () {
             print('$event tapped!');
             DateTime now = DateTime.now();
