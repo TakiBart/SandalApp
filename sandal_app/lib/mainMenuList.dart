@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import './tempSubMenu.dart';
 import './Groups.dart';
+import './CalendarGeneral.dart';
 
 List list = [
   {
@@ -25,13 +26,12 @@ List list = [
     "icon": Icons.ac_unit,
     "color": Colors.orange,
     "builder": (_) =>
-//    new MyTempPage(
-//      tempId: "tempSubMenu",
-//      tempName: "MenuItem2",
-//      tempIcon: Icons.ac_unit,
-//      tempColor: Colors.orange,
-//    )
-      new CalendarSectionPage()
+    new MyTempPage(
+      tempId: "tempSubMenu",
+      tempName: "MenuItem2",
+      tempIcon: Icons.ac_unit,
+      tempColor: Colors.orange,
+    )
   },
   {
     "id": "groups",
@@ -59,12 +59,13 @@ List list = [
     "icon": Icons.airport_shuttle,
     "color": Colors.orange,
     "builder": (_) =>
-    new MyTempPage(
-      tempId: "tempSubMenu",
-      tempName: "MenuItem5 - DanBus",
-      tempIcon: Icons.airport_shuttle,
-      tempColor: Colors.orange,
-    )
+//    new MyTempPage(
+//      tempId: "tempSubMenu",
+//      tempName: "MenuItem5 - DanBus",
+//      tempIcon: Icons.airport_shuttle,
+//      tempColor: Colors.orange,
+//    )
+      new CalendarGeneralPage(key: Key('key'), title: 'Kalendarz'),
   },
   {
     "id": "tempSubMenu",
