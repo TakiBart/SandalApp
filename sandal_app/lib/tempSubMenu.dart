@@ -50,7 +50,6 @@ class _CommentsListedPageState extends State<CommentsSectionPage>{
               ),
             ]),
     onTap: () =>{
-      //TODO: Uciszyć albo co
       Navigator.push((context), MaterialPageRoute(builder: (context) => _CommentDetailsPage(document['title'],document['author'],document['body'])))
     },);
   }
