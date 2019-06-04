@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import './tempSubMenu.dart';
 import './Groups.dart';
+import './CalendarGeneral.dart';
 
 List list = [
   {
@@ -11,12 +12,13 @@ List list = [
     // TODO: Ikona będzie pokolorowana czy przekazujemy kolor (albo dwa)?
     "color": Colors.orange,
     "builder": (_) =>
-    new MyTempPage(
-      tempId: "tempSubMenu",
-      tempName: "Komentarz",
-      tempIcon: Icons.comment,
-      tempColor: Colors.orange,
-    )
+//    new MyTempPage(
+//      tempId: "tempSubMenu",
+//      tempName: "Komentarz",
+//      tempIcon: Icons.comment,
+//      tempColor: Colors.orange,
+//    )
+      new CommentsSectionPage()
   },
   {
     "id": "tempSubMenu",
@@ -52,17 +54,12 @@ List list = [
     )
   },
   {
-    "id": "tempSubMenu",
-    "name": "MenuItem5 - DanBus",
-    "icon": Icons.airport_shuttle,
+    "id": "calendar",
+    "name": "Kalendarz",
+    "icon": Icons.calendar_today,
     "color": Colors.orange,
     "builder": (_) =>
-    new MyTempPage(
-      tempId: "tempSubMenu",
-      tempName: "MenuItem5 - DanBus",
-      tempIcon: Icons.airport_shuttle,
-      tempColor: Colors.orange,
-    )
+      new CalendarGeneralPage(key: Key('key'), title: 'Kalendarz'),
   },
   {
     "id": "tempSubMenu",

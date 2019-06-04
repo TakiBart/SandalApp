@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-
+import 'package:intl/date_symbol_data_local.dart';
 import './mainMenuList.dart' as mainMenuItemsList;
-import './TextStyles.dart';
+import './Styles.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-void main() => runApp(MyApp());
+void main() => initializeDateFormatting().then((_) => runApp(MyApp()));
+
 
 class MyApp extends StatelessWidget {
   @override
@@ -68,7 +70,6 @@ class _MyHomePageState extends State<MyHomePage> {
                             mainMenuItemsList.list[index]['icon'],
                             // TODO: #2
                             size: 0.7 * constraints.maxHeight,
-
                             color: Colors.white,
                           );
                         },

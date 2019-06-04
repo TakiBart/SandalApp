@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import './Group.dart';
 import './GroupDetailPage.dart';
-import './TextStyles.dart';
+import './Styles.dart';
 
 // TODO: Some cleanups.
 

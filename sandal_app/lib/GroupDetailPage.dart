@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import './Group.dart';
 import './GroupSummary.dart';
-import './TextStyles.dart';
+import './Styles.dart';
 
 class GroupDetailPage extends StatelessWidget {
   final Group group;
