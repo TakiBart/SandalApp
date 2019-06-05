@@ -4,6 +4,7 @@ import './tempSubMenu.dart';
 import './Groups.dart';
 import './ConfessionPage.dart';
 import 'GalleryPage.dart';
+import './CalendarGeneral.dart';
 
 List list = [
   {
@@ -50,17 +51,12 @@ List list = [
     new GalleryPage()
   },
   {
-    "id": "tempSubMenu",
-    "name": "MenuItem5 - DanBus",
-    "icon": Icons.airport_shuttle,
+    "id": "calendar",
+    "name": "Kalendarz",
+    "icon": Icons.calendar_today,
     "color": Colors.orange,
     "builder": (_) =>
-    new MyTempPage(
-      tempId: "tempSubMenu",
-      tempName: "MenuItem5 - DanBus",
-      tempIcon: Icons.airport_shuttle,
-      tempColor: Colors.orange,
-    )
+      new CalendarGeneralPage(key: Key('key'), title: 'Kalendarz'),
   },
   {
     "id": "tempSubMenu",
