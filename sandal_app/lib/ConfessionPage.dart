@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart' as Launcher;
 
+import 'Styles.dart';
+import 'colors.dart';
+
 
 class ConfessionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Spowiedź',
       theme: ThemeData(
         primarySwatch: Colors.orange,
       ),
@@ -28,6 +30,11 @@ class _ConfessionPageState extends State<_ConfessionPage>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          title: Text('Spowiedź',
+          style: Style.titleTextStyle),
+          iconTheme: IconThemeData(color: MyColors.appbarIconTheme),
+        ),
       body: new Center(
         child: new RaisedButton(
             onPressed:  (){

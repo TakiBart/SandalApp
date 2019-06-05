@@ -14,7 +14,10 @@ class _CommentsListedPageState extends State<CommentsSectionPage>{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Sekcja komentarzy"),
+        title: Text("Komentarz", style: Style.headerTextStyle),
+        iconTheme: IconThemeData(
+          color: MyColors.appbarIconTheme,
+        ),
       ),
 
       body: StreamBuilder(
@@ -66,7 +69,10 @@ class _CommentDetailsPage extends StatelessWidget{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title)
+        title: Text(title),
+        iconTheme: IconThemeData(
+          color: MyColors.appbarIconTheme,
+        ),
       ),
       body:
         Container(

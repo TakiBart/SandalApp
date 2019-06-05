@@ -4,8 +4,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import './Styles.dart';
 import './colors.dart';
-//import 'package:firebase_storage/firebase_storage.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 //import 'package:firebase_auth/firebase_auth.dart';
+//import 'package:image_picker/image_picker.dart';
 
 class GalleryPage extends StatelessWidget {
   @override
@@ -41,7 +42,7 @@ class _GalleryPageState extends State<_GalleryPage>{
       ),
       onTap: (){
         Navigator.push(context, MaterialPageRoute(builder: (_){
-          return new DetailFullscreen(document['url'],document['description'],document['author']);
+          return new DetailFullscreen(document['url'],document['author']);
         }));
        },
     );
@@ -54,8 +55,11 @@ class _GalleryPageState extends State<_GalleryPage>{
           'Galeria',
           style: Style.titleTextStyle,
         ),
+          iconTheme: IconThemeData(
+            color: MyColors.appbarIconTheme,
+          ),
         actions:<Widget>[
-          new IconButton(icon: new Icon(Icons.cloud_upload), onPressed: _uploadImages),
+          new IconButton(icon: new Icon(Icons.cloud_upload), onPressed: _chooseImage)
         ]
       ),
       body: StreamBuilder(
@@ -75,9 +79,8 @@ class _GalleryPageState extends State<_GalleryPage>{
 }
 class DetailFullscreen extends StatelessWidget{
   final String imgUrl;
-  final String imgDesc;
   final String imgAuthor;
-  DetailFullscreen(this.imgUrl, this.imgDesc, this.imgAuthor);
+  DetailFullscreen(this.imgUrl, this.imgAuthor);
 
   @override
   Widget build(BuildContext context) {
@@ -98,6 +101,14 @@ class DetailFullscreen extends StatelessWidget{
   }
 }
 
-void _uploadImages(){
+Future _chooseImage() async{
 
+//  var tempImage = await ImagePicker.pickImage(source: ImageSource.gallery);
+  File image;
+  if(image!=null){
+    final StorageReference sr = FirebaseStorage.instance.ref().child('newfile.jpg');
+    final StorageUploadTask task = sr.putFile(image);
+  }
+
+  //TODO: push to Storage, and copy URL to cloud firestore (create a new document)
 }
