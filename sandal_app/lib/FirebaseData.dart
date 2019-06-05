@@ -31,27 +31,25 @@ class Post{
   }
 }
 
-class Image {
+class CustomImage {
   final String url;
   final String author;
-  final String description; //description
   final DateTime creationDate;
 
-  Image({ this.url, this.author, this.description, this.creationDate});
+  CustomImage({ this.url, this.author, this.creationDate});
 
-  factory Image.fromJson(Map<String, dynamic> json){
-    return Image(
+  factory CustomImage.fromJson(Map<String, dynamic> json){
+    return CustomImage(
         url: json['url'],
         author: json['author'],
-        description: json['description'],
         creationDate: json['creationDate']
     );
   }
 
-  Future<Image> fetchImage() async {
+  Future<CustomImage> fetchImage() async {
     final response = await http.get(""); //TODO: Fill the address
     if (response.statusCode == 200) {
-      return Image.fromJson(json.decode(response.body));
+      return CustomImage.fromJson(json.decode(response.body));
     }
     else {
       throw Exception('Failed to load image');

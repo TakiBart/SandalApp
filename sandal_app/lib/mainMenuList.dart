@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import './tempSubMenu.dart';
 import './Groups.dart';
+import './ConfessionPage.dart';
+import 'GalleryPage.dart';
 import './CalendarGeneral.dart';
 
 List list = [
@@ -46,12 +48,7 @@ List list = [
     "icon": Icons.airline_seat_individual_suite,
     "color": Colors.orange,
     "builder": (_) =>
-    new MyTempPage(
-      tempId: "tempSubMenu",
-      tempName: "MenuItem4 - spanko",
-      tempIcon: Icons.airline_seat_individual_suite,
-      tempColor: Colors.orange,
-    )
+    new GalleryPage()
   },
   {
     "id": "calendar",
@@ -67,11 +64,6 @@ List list = [
     "icon": Icons.directions_run,
     "color": Colors.orange,
     "builder": (_) =>
-    new MyTempPage(
-      tempId: "tempSubMenu",
-      tempName: "MenuItem6",
-      tempIcon: Icons.directions_run,
-      tempColor: Colors.orange,
-    )
+    new ConfessionPage()
   },
 ];
