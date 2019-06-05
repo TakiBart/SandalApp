@@ -30,8 +30,6 @@ class _GalleryPage extends StatefulWidget {
 
 class _GalleryPageState extends State<_GalleryPage>{
 
-
-  final int imgCount =50;
   Widget _buildListSingleItem(BuildContext context, DocumentSnapshot document){
     return ListTile(
       title: Column(
@@ -40,7 +38,12 @@ class _GalleryPageState extends State<_GalleryPage>{
                 child: Image.network(document['url']),
                 )
           ]
-      )
+      ),
+      onTap: (){
+        Navigator.push(context, MaterialPageRoute(builder: (_){
+          return new DetailFullscreen(document['url'],document['description'],document['author']);
+        }));
+       },
     );
   }
   @override
@@ -48,9 +51,12 @@ class _GalleryPageState extends State<_GalleryPage>{
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          widget.title,
+          'Galeria',
           style: Style.titleTextStyle,
         ),
+        actions:<Widget>[
+          new IconButton(icon: new Icon(Icons.cloud_upload), onPressed: _uploadImages),
+        ]
       ),
       body: StreamBuilder(
         stream: Firestore.instance.collection('images').snapshots(),
@@ -67,29 +73,31 @@ class _GalleryPageState extends State<_GalleryPage>{
       );
   }
 }
-//Center(
-//        child: new GridView.builder(
-//            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-//              crossAxisCount: 2,
-//              mainAxisSpacing: 10.0,
-//              crossAxisSpacing: 10.0,
-////              childAspectRatio: 0.5,
-//            ),
-//            padding: const EdgeInsets.all(20.0),
-//            itemCount: imgCount,
-//            itemBuilder: (BuildContext context, int index) {
-//              return new Container(
-//                // TODO: Change sizes not to be hardcoded #2
-//                child: GestureDetector(
-//                  child: Container(
-//                    margin: EdgeInsets.all(15.0),
-//                    child:Container(
-//                      decoration: new BoxDecoration(
-//                        shape: BoxShape.rectangle,
-//                        color: colors['iconBackground'],
-//                      ),
-//                    ),
-//                  ),
-//                ),
-//              );
-//            }),
+class DetailFullscreen extends StatelessWidget{
+  final String imgUrl;
+  final String imgDesc;
+  final String imgAuthor;
+  DetailFullscreen(this.imgUrl, this.imgDesc, this.imgAuthor);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Scaffold(
+          appBar: AppBar(
+            title: Text('Autor: ' + imgAuthor,
+                style: Style.headerTextStyle),
+          ),
+          body: GestureDetector(
+            child: Center(
+              child: Image.network(imgUrl),
+              ),
+            onTap: (){ Navigator.pop(context); },
+            ),
+          ),
+     );
+  }
+}
+
+void _uploadImages(){
+
+}
