@@ -5,6 +5,7 @@ import './Groups.dart';
 import './ConfessionPage.dart';
 import 'GalleryPage.dart';
 import './CalendarGeneral.dart';
+import './CommentPage.dart';
 
 List list = [
   {
@@ -14,13 +15,7 @@ List list = [
     // TODO: Ikona będzie pokolorowana czy przekazujemy kolor (albo dwa)?
     "color": Colors.orange,
     "builder": (_) =>
-//    new MyTempPage(
-//      tempId: "tempSubMenu",
-//      tempName: "Komentarz",
-//      tempIcon: Icons.comment,
-//      tempColor: Colors.orange,
-//    )
-      new CommentsSectionPage()
+      new CommentPage()
   },
   {
     "id": "tempSubMenu",
