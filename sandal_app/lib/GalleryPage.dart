@@ -7,7 +7,9 @@ import './colors.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import './strings.dart';
 //import 'package:firebase_auth/firebase_auth.dart';
-//import 'package:image_picker/image_picker.dart';
+import 'package:image_picker/image_picker.dart';
+
+import 'Authorization.dart';
 
 class GalleryPage extends StatelessWidget {
   @override
@@ -22,7 +24,7 @@ class GalleryPage extends StatelessWidget {
               color: MyColors.appbarIconTheme,
             ),
             actions:<Widget>[
-              new IconButton(icon: new Icon(Icons.cloud_upload), onPressed: _chooseImage)
+              new IconButton(icon: new Icon(Icons.cloud_upload), onPressed: () =>{_verifyUserBeforeUpload(context)}),
             ]
         ),
         body: StreamBuilder(
@@ -56,6 +58,12 @@ class GalleryPage extends StatelessWidget {
     );
   }
 
+  void _verifyUserBeforeUpload(BuildContext context){
+    if(LoginPage.user==null)
+      Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+    else
+      Navigator.push(context, MaterialPageRoute(builder: (context) => WelcomePage()));
+  }
 }
 class DetailFullscreen extends StatelessWidget{
   final String imgUrl;
@@ -79,16 +87,4 @@ class DetailFullscreen extends StatelessWidget{
           ),
      );
   }
-}
-
-Future _chooseImage() async{
-
-//  var tempImage = await ImagePicker.pickImage(source: ImageSource.gallery);
-  File image;
-  if(image!=null){
-    final StorageReference sr = FirebaseStorage.instance.ref().child('newfile.jpg');
-    final StorageUploadTask task = sr.putFile(image);
-  }
-
-  //TODO: push to Storage, and copy URL to cloud firestore (create a new document)
 }
