@@ -1,12 +1,21 @@
 import 'package:Sandal/strings.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 import './mainMenuList.dart' as mainMenuItemsList;
 import './Styles.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-void main() => initializeDateFormatting().then((_) => runApp(MyApp()));
+void main(){
+  initializeDateFormatting();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown
+  ]);
+
+  runApp(MyApp());
+}
 
 
 class MyApp extends StatelessWidget {
