@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import './Styles.dart';
 import './colors.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import './strings.dart';
 //import 'package:firebase_auth/firebase_auth.dart';
 //import 'package:image_picker/image_picker.dart';
 
@@ -14,7 +15,7 @@ class GalleryPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
             title: Text(
-              'Galeria', //TODO: Get strings from strings.dart file
+              strings['gallerySectionTitle'], //TODO: Get strings from strings.dart file
               style: Style.titleTextStyle,
             ),
             iconTheme: IconThemeData(
@@ -28,7 +29,7 @@ class GalleryPage extends StatelessWidget {
             stream: Firestore.instance.collection('images').snapshots(),
             builder: (context, snapshot){
               if(!snapshot.hasData)
-                return Text("Proszę czekać");
+                return Text(strings['pleaseWaitMessage']);
               return GridView.builder(
                 gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
                 itemCount: snapshot.data.documents.length,

@@ -1,3 +1,4 @@
+import 'package:Sandal/strings.dart';
 import 'package:flutter/material.dart';
 
 import './Styles.dart';
@@ -10,7 +11,7 @@ class CommentPage extends StatelessWidget{
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Komentarz", style: Style.headerTextStyle),
+          title: Text(strings['commentSectionTitle'], style: Style.headerTextStyle),
           iconTheme: IconThemeData(
             color: MyColors.appbarIconTheme,
           ),

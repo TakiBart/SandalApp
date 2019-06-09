@@ -1,3 +1,4 @@
+import 'package:Sandal/strings.dart';
 import 'package:flutter/material.dart';
 
 import './tempSubMenu.dart';
@@ -51,7 +52,7 @@ List list = [
     "icon": Icons.calendar_today,
     "color": Colors.orange,
     "builder": (_) =>
-      new CalendarGeneralPage(key: Key('key'), title: 'Kalendarz'),
+      new CalendarGeneralPage(key: Key('key'), title: strings['calendarSectionTitle']),
   },
   {
     "id": "tempSubMenu",
