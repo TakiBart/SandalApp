@@ -1,5 +1,6 @@
 import 'package:Sandal/strings.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import './Styles.dart';
 import './colors.dart';
@@ -7,6 +8,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CommentPage extends StatelessWidget{
 
+  void _addMessage() async{
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,25 +32,44 @@ class CommentPage extends StatelessWidget{
                 itemBuilder: (context, index) =>_buildListSingleItem(context, snapshot.data.documents[index]),
               );
             }
-        )
+        ),
+        floatingActionButton: FloatingActionButton(onPressed: _addMessage),
     );
   }
   Widget _buildListSingleItem(BuildContext context, DocumentSnapshot document){
+    final priority = document['priority'];
+    Icon leadIcon;
+    if(priority == 1)
+      leadIcon=Icon(Icons.alarm, color: Colors.red);
+    else if(priority == 2)
+      leadIcon = Icon(Icons.alarm, color: Colors.orange);
+    else
+      leadIcon = Icon(Icons.message, color: Colors.green);
     return ListTile(
+      leading: leadIcon,
       title: Column(
+
           children: <Widget>[
-            Expanded(
-                child: Text(
-                    document.data['author'] + ": "+ document.data['title'],
-                    style:Theme.of(context).textTheme.headline
-                )
+             Text(
+                 document.data['author'] + ": "+ document.data['title'],
+                 style:Theme.of(context).textTheme.title)
+            ,
+            Text(
+                DateFormat("dd-MM-yyyy HH:mm").format(document['creationDate'].toDate())
             ),
-            Container(
-                padding: EdgeInsets.all(10.0),
-                child: Text(
-                    document.data['body'])
-            ),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 8,horizontal: 0),
+              child: Text(
+                  document['body'],
+                  softWrap: true,
+                  overflow: TextOverflow.ellipsis,
+                  style: Styles.baseTextStyle,
+                  maxLines: 2,
+              )
+            )
+
           ]),
+      trailing: Icon(Icons.arrow_forward),
       onTap: () =>{
         Navigator.push((context), MaterialPageRoute(builder: (context) => _CommentDetailsPage(document['title'],document['author'],document['body'])))
       },);

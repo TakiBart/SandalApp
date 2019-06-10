@@ -18,10 +18,7 @@ class LoginPage extends StatefulWidget{
   State<StatefulWidget> createState() => new _LoginPageState();
 
   static FirebaseUser get user => _user;
-
-
 }
-
 class _LoginPageState extends State<LoginPage>{
   String _email, _password;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -36,7 +33,6 @@ class _LoginPageState extends State<LoginPage>{
         iconTheme: IconThemeData(
           color: MyColors.appbarIconTheme,
         ),
-
       ),
       body: Form(
         key: _formKey,
@@ -117,8 +113,6 @@ class _LoginPageState extends State<LoginPage>{
     }
   }
 }
-
-
 class ChooseImagePage extends StatefulWidget{
   @override
   State<StatefulWidget> createState() => _ChooseImagePageState();
@@ -145,7 +139,6 @@ class _ChooseImagePageState extends State<ChooseImagePage>{
         "creationDate": DateTime.now().toIso8601String(),
         "url": url
       };
-      //TODO: RANDOM DOCUMENT NAMES, otherwise we'll be uploading same image over and over again
       final documentReference = Firestore.instance.document('images/'+fileName);
       documentReference.setData(data).whenComplete((){
         print("added doc");
@@ -166,7 +159,7 @@ class _ChooseImagePageState extends State<ChooseImagePage>{
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.save),
-            onPressed: () => _uploadImage(basename(_chosenImage.path)),
+            onPressed: () => { _uploadImage(basename(_chosenImage.path))}
           ),
         ],
       ),
