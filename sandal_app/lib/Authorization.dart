@@ -27,7 +27,7 @@ class _LoginPageState extends State<LoginPage>{
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          strings['signInMessage'],
+          strings['signInRequiredMessage'],
           style: Styles.titleTextStyle,
         ),
         iconTheme: IconThemeData(
@@ -104,8 +104,8 @@ class _LoginPageState extends State<LoginPage>{
       formState.save();
       try{
         LoginPage._user = await FirebaseAuth.instance.signInWithEmailAndPassword(email: _email, password: _password);
-            Navigator.pop(context);
-        Navigator.push(context, MaterialPageRoute(builder: (context)=> new ChooseImagePage()));
+        Navigator.pop(context);
+//        Navigator.push(context, MaterialPageRoute(builder: (context)=> new ChooseImagePage()));
       } catch (exception){
         print(exception.toString());
       }

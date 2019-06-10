@@ -7,15 +7,23 @@ Map<String, String> strings = {
   'pleaseWaitMessage': "Proszę czekać",
   'doodleLink': "https://dasandal.doodle.com/poll/2htk76vv6hubvi6v",
   'signInMessage': "Zaloguj się",
+  'signInRequiredMessage': "Wymagane zalogowanie się",
   'signUpMessage': "Zarejestruj",
   'confessButtonMessage': "Zapisz się",
   'incorrectEmailInput': "Nieprawidłowy adres e-mail",
   'incorrectPasswordInput': "Podane hasło jest za krótkie",
+  'emptyInputMessage' :"Nie może być puste",
   'email' : "E-mail",
   'password' :"Hasło",
   'chooseImageMessage': "Wybierz zdjęcie",
   'incorrectCredentials': "Nieprawidłowy e-mail i/lub hasło",
   'jsonImagesFirestorePath': "images/",
   'unknownAuthor': "Nieznany",
-  'donWaitForeverMessage':"Nie czekaj na ostatnią chwilę!"
+  'donWaitForeverMessage':"Nie czekaj na ostatnią chwilę!",
+  'priority': "Priorytet",
+  'title': "Tytuł",
+  'messageBody': "Wiadomość",
+  'author': "Autor",
+  'submitButtonText': "Wyślij"
+
 };

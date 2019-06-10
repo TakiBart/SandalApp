@@ -6,11 +6,10 @@ import './Styles.dart';
 import './colors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'Authorization.dart';
+
 class CommentPage extends StatelessWidget{
 
-  void _addMessage() async{
-
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +32,15 @@ class CommentPage extends StatelessWidget{
               );
             }
         ),
-        floatingActionButton: FloatingActionButton(onPressed: _addMessage),
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add, color: Colors.white,),
+          onPressed: () => {
+            if(LoginPage.user==null)
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginPage()))
+            else
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>AddCommentPage()))
+          }
+        )
     );
   }
   Widget _buildListSingleItem(BuildContext context, DocumentSnapshot document){
@@ -106,4 +113,129 @@ class _CommentDetailsPage extends StatelessWidget{
 
     );
   }
+}
+class AddCommentPage extends StatelessWidget{
+  final GlobalKey<FormState> _formKey2 = GlobalKey<FormState>();
+  String _author, _title, _message, _priority;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "Dodaj komentarz",
+           style: Styles.titleTextStyle,),
+        iconTheme: IconThemeData(
+          color: MyColors.appbarIconTheme,
+        ),//TODO: Change to strings['addCommentPageTitle']
+      ),
+      body: Form(
+        key: _formKey2,
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+              child: new TextFormField(
+                maxLines: 1,
+                validator: (input) {
+                  if(input.isEmpty){
+                    return strings['emptyInputMessage'];
+                  }
+                },
+                keyboardType: TextInputType.emailAddress,
+                autofocus: false,
+                decoration: new InputDecoration(
+                    hintText: strings['author'],
+                    icon: new Icon(
+                      Icons.contact_phone,
+                      color: Colors.grey,
+                    )),
+                onSaved: (input) => _author = input,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+              child: new TextFormField(
+                maxLines: 1,
+                validator: (input) {
+                  if(input.isEmpty){
+                    return strings['emptyInputMessage'];
+                  }
+                },
+                keyboardType: TextInputType.text,
+                autofocus: false,
+                decoration: new InputDecoration(
+                    hintText: strings['title'],
+                    icon: new Icon(
+                      Icons.title,
+                      color: Colors.grey,
+                    )),
+                onSaved: (input) => _title = input,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+              child: new TextFormField(
+                maxLines: 1,
+                validator: (input) {
+                  if(input.isEmpty){
+                    return strings['emptyInputMessage'];
+                  }
+                },
+                keyboardType: TextInputType.number,
+                autofocus: false,
+                decoration: new InputDecoration(
+                    hintText: strings['priority'],
+                    icon: new Icon(
+                      Icons.priority_high,
+                      color: Colors.grey,
+                    )),
+                onSaved: (input) => _priority = input,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+              child: new TextFormField(
+                maxLines: 1,
+                validator: (input) {
+                  if(input.isEmpty){
+                    return strings['emptyInputMessage'];
+                  }
+                },
+                keyboardType: TextInputType.text,
+                autofocus: false,
+                decoration: new InputDecoration(
+                    hintText: strings['messageBody'],
+                    icon: new Icon(
+                      Icons.message,
+                      color: Colors.grey,
+                    )),
+                onSaved: (input) => _message = input,
+              ),
+            ),
+            RaisedButton(
+              child: Text(strings['submitButtonText']),
+              onPressed: _sendMessage,
+            )
+          ],
+        ),
+      )
+    );
+  }
+  void _sendMessage() async {
+
+    final formState = _formKey2.currentState;
+    if(formState.validate()){
+      var data = <String, String> {
+        "title": _title,
+        "creationDate": DateTime.now().toIso8601String(),
+        "author": _author,
+        "priority": _priority,
+        "body": _message
+      };
+      Firestore.instance.collection('posts').add(data).catchError((e) {
+      });
+    }
+  }
+
+
 }
