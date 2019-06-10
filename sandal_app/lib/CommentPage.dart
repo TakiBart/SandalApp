@@ -115,7 +115,7 @@ class _CommentDetailsPage extends StatelessWidget{
   }
 }
 class AddCommentPage extends StatelessWidget{
-  final GlobalKey<FormState> _formKey2 = GlobalKey<FormState>();
+  static final GlobalKey<FormState> _formKey2 = GlobalKey<FormState>();
   String _author, _title, _message, _priority;
   @override
   Widget build(BuildContext context) {
