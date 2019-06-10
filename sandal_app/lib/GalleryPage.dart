@@ -6,7 +6,6 @@ import './Styles.dart';
 import './colors.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import './strings.dart';
-//import 'package:firebase_auth/firebase_auth.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'Authorization.dart';
@@ -18,13 +17,15 @@ class GalleryPage extends StatelessWidget {
         appBar: AppBar(
             title: Text(
               strings['gallerySectionTitle'], //TODO: Get strings from strings.dart file
-              style: Style.titleTextStyle,
+              style: Styles.titleTextStyle,
             ),
             iconTheme: IconThemeData(
               color: MyColors.appbarIconTheme,
             ),
             actions:<Widget>[
-              new IconButton(icon: new Icon(Icons.cloud_upload), onPressed: () =>{_verifyUserBeforeUpload(context)}),
+              new IconButton(
+                  icon: new Icon(Icons.cloud_upload),
+                  onPressed: () =>{_verifyUserBeforeUpload(context)}),
             ]
         ),
         body: StreamBuilder(
@@ -52,7 +53,7 @@ class GalleryPage extends StatelessWidget {
       ),
       onTap: (){
         Navigator.push(context, MaterialPageRoute(builder: (_){
-          return new DetailFullscreen(document['url'],document['author']);
+          return new DetailFullscreen(document['url'],document['title']);
         }));
       },
     );
@@ -62,21 +63,21 @@ class GalleryPage extends StatelessWidget {
     if(LoginPage.user==null)
       Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
     else
-      Navigator.push(context, MaterialPageRoute(builder: (context) => WelcomePage()));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => ChooseImagePage()));
   }
 }
 class DetailFullscreen extends StatelessWidget{
   final String imgUrl;
-  final String imgAuthor;
-  DetailFullscreen(this.imgUrl, this.imgAuthor);
+  final String imgTitle;
+  DetailFullscreen(this.imgUrl, this.imgTitle);
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Scaffold(
           appBar: AppBar(
-            title: Text('Autor: ' + imgAuthor,
-                style: Style.headerTextStyle),
+            title: Text(imgTitle,
+                style: Styles.headerTextStyle),
           ),
           body: GestureDetector(
             child: Center(

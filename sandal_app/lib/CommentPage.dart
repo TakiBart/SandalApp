@@ -11,7 +11,7 @@ class CommentPage extends StatelessWidget{
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(strings['commentSectionTitle'], style: Style.headerTextStyle),
+          title: Text(strings['commentSectionTitle'], style: Styles.headerTextStyle),
           iconTheme: IconThemeData(
             color: MyColors.appbarIconTheme,
           ),

@@ -92,7 +92,7 @@ class GroupDetailPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               new Text(_overviewTitle,
-                style: Style.headerTextStyle,
+                style: Styles.headerTextStyle,
               ),
               new Container(
                 margin: new EdgeInsets.symmetric(vertical: 8.0),
@@ -102,7 +102,7 @@ class GroupDetailPage extends StatelessWidget {
 
               ),
               new Text(group.description,
-                style: Style.commonTextStyle,
+                style: Styles.commonTextStyle,
                 // TODO: To justify or not to justify?
                 textAlign: TextAlign.justify,
               ),

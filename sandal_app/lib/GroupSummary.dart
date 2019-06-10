@@ -30,7 +30,7 @@ class GroupSummary extends StatelessWidget {
           new Text(
             group.shortName,
             // TODO: Text styles
-            style: Style.headerTextStyle,
+            style: Styles.headerTextStyle,
             textAlign: TextAlign.center,
           ),
           new Container(
@@ -38,7 +38,7 @@ class GroupSummary extends StatelessWidget {
           ),
           new Text(
             group.time,
-            style: Style.smallTextStyle,
+            style: Styles.smallTextStyle,
           ),
           // TODO: If there is no leader, don't show Expanded below.
           new Expanded(
@@ -67,7 +67,7 @@ class GroupSummary extends StatelessWidget {
                           new Text(
 //                            group.leader == null ? 'noLeader' : group.leader,
                             group.shortDescription,
-                            style: Style.smallTextStyle,
+                            style: Styles.smallTextStyle,
                           ),
                         ],
                       ),

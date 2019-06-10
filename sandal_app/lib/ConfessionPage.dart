@@ -12,7 +12,7 @@ class ConfessionPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text(strings['doodleLink'], //TODO: Replace with string from strings.dart,
-            style: Style.titleTextStyle,
+            style: Styles.titleTextStyle,
           ),
           iconTheme: IconThemeData(
               color: colors['appbarIconTheme']

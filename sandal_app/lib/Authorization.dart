@@ -1,6 +1,12 @@
+import 'dart:io';
+
 import 'package:Sandal/strings.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart';
 import 'Styles.dart';
 import 'colors.dart';
 
@@ -25,7 +31,7 @@ class _LoginPageState extends State<LoginPage>{
       appBar: AppBar(
         title: Text(
           strings['signInMessage'],
-          style: Style.titleTextStyle,
+          style: Styles.titleTextStyle,
         ),
         iconTheme: IconThemeData(
           color: MyColors.appbarIconTheme,
@@ -34,42 +40,65 @@ class _LoginPageState extends State<LoginPage>{
       ),
       body: Form(
         key: _formKey,
-        child: Column(
-
-          children: <Widget>[
-              TextFormField(
-                validator: (input) {
-                  if(input.isEmpty || !input.contains('@')){
-                    return strings['incorrectEmailInput'];
-                  }
-                },
-                onSaved: (input) { _email = input; },
-                decoration: InputDecoration(
-                  labelText: 'E-mail'
+        child: Container(
+          margin: new EdgeInsets.all(15),
+          child:Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                  child: new TextFormField(
+                    maxLines: 1,
+                    keyboardType: TextInputType.emailAddress,
+                    autofocus: false,
+                    decoration: new InputDecoration(
+                        hintText: strings['email'],
+                        icon: new Icon(
+                          Icons.mail,
+                          color: Colors.grey,
+                        )),
+                    validator: (input) {
+                      if(input.isEmpty || !input.contains('@')){
+                        return strings['incorrectEmailInput'];
+                      }
+                    },
+                    onSaved: (input) => _email = input,
+                  ),
                 ),
-              ),
-            TextFormField(
-              validator: (input) {
-                if(input.length < 2){
-                  return strings['incorrectPasswordInput'];
-                }
-              },
-              onSaved: (input) { _password = input;},
-              decoration: InputDecoration(
-
-                  labelText: strings['password'],
-              ),
-              obscureText: true,
+                Padding(
+                  padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                  child: new TextFormField(
+                    obscureText: true,
+                    maxLines: 1,
+                    keyboardType: TextInputType.emailAddress,
+                    autofocus: false,
+                    decoration: new InputDecoration(
+                        hintText: strings['password'],
+                        icon: new Icon(
+                          Icons.lock,
+                          color: Colors.grey,
+                        )),
+                    validator: (input) {
+                      if(input.isEmpty || input.length<2){
+                        return strings['incorrectPasswordInput'];
+                      }
+                    },
+                    onSaved: (input) => _password = input,
+                  ),
+                ),
+                Padding(
+                  child:RaisedButton(
+                    onPressed: (){
+                      _signIn(context);
+                    },
+                    child: Text(strings['signInMessage']),
+                  ),
+                  padding: EdgeInsets.fromLTRB(10,10,10,0),
+                ),
+              ],
             ),
-            RaisedButton(
-              onPressed: (){
-                  _signIn(context);
-              },
-              child: Text(strings['signInMessage']),
-            )
-
-          ],
-        ),
+        )
       )
     );
   }
@@ -78,32 +107,95 @@ class _LoginPageState extends State<LoginPage>{
     if(formState.validate()){
       formState.save();
       try{
-    LoginPage._user = await FirebaseAuth.instance.signInWithEmailAndPassword(email: _email, password: _password);
-        Navigator.pop(context);
-        Navigator.push(context, MaterialPageRoute(builder: (context)=> new WelcomePage()));
-      }
-      catch(e){
-        LoginPage._user=null;
-        print(e.toString());
+        LoginPage._user = await FirebaseAuth.instance.signInWithEmailAndPassword(email: _email, password: _password);
+            Navigator.pop(context);
+        Navigator.push(context, MaterialPageRoute(builder: (context)=> new ChooseImagePage()));
+      } catch (exception){
+        print(exception.toString());
       }
 
     }
   }
 }
-class WelcomePage extends StatelessWidget{
+
+
+class ChooseImagePage extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState() => _ChooseImagePageState();
+}
+class _ChooseImagePageState extends State<ChooseImagePage>{
+
+  File _chosenImage;
+  Future _getImageFromGallery() async {
+    File img = await ImagePicker.pickImage(source: ImageSource.gallery);
+    setState(() => {_chosenImage = img});
+  }
+  Future _getImageFromCamera() async {
+    File img = await ImagePicker.pickImage(source: ImageSource.camera);
+    setState(()=>{_chosenImage = img});
+  }
+  void _uploadImage(String fileName) async{
+    if(_chosenImage!=null){
+      StorageReference ref = FirebaseStorage.instance.ref().child(fileName);
+      StorageUploadTask uploadTask = ref.putFile(_chosenImage);
+
+      var url =  await(await uploadTask.onComplete).ref.getDownloadURL();
+
+      ;
+      var data = <String, String>{
+        "title": fileName,
+        "creationDate": DateTime.now().toIso8601String(),
+        "url": url
+      };
+      //TODO: RANDOM DOCUMENT NAMES, otherwise we'll be uploading same image over and over again
+      final documentReference = Firestore.instance.document('images/6');
+      documentReference.setData(data).whenComplete((){
+        print("added doc");
+      }).catchError((e)=>print(e));
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          strings['chooseImageMessage'], //+ LoginPage._user.displayName,
-          style: Style.titleTextStyle,
+          strings['chooseImageMessage'],
+          style: Styles.titleTextStyle,
         ),
         iconTheme: IconThemeData(
           color: MyColors.appbarIconTheme,
         ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.save),
+            onPressed: () => _uploadImage(basename(_chosenImage.path)),
+          ),
+        ],
       ),
+      body: Center(
+        child: _chosenImage==null
+            ? Text(strings['chooseImageMessage'])
+            : Image.file(_chosenImage),
+
+      ),
+      floatingActionButton: Column(
+
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          FloatingActionButton(
+            heroTag: "a",
+            child: Icon(Icons.photo_album),
+            onPressed: _getImageFromGallery,
+          ),
+          FloatingActionButton(
+            heroTag: "b",
+            child: Icon(Icons.camera),
+            onPressed: _getImageFromCamera,
+          )
+        ],
+      )
     );
   }
+
 
 }

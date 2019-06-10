@@ -12,5 +12,8 @@ Map<String, String> strings = {
   'incorrectPasswordInput': "Podane hasło jest za krótkie",
   'email' : "E-mail",
   'password' :"Hasło",
-  'chooseImageMessage': "Wybierz zdjęcie"
+  'chooseImageMessage': "Wybierz zdjęcie",
+  'incorrectCredentials': "Nieprawidłowy e-mail i/lub hasło",
+  'jsonImagesFirestorePath': "images/",
+  'unknownAuthor': "Nieznany"
 };

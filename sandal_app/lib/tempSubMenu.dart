@@ -49,7 +49,7 @@ class _MyTempPageState extends State<MyTempPage> {
       appBar: AppBar(
         title: Text(
           widget.tempName,
-          style: Style.titleTextStyle,
+          style: Styles.titleTextStyle,
         ),
         iconTheme: IconThemeData(
           color: MyColors.appbarIconTheme,
@@ -64,7 +64,7 @@ class _MyTempPageState extends State<MyTempPage> {
             children: <Widget>[
               Text(
                 'You have pushed the button this many times:',
-                style: Style.headerTextStyle,
+                style: Styles.headerTextStyle,
                 textAlign: TextAlign.center,
               ),
               Container(
@@ -76,7 +76,7 @@ class _MyTempPageState extends State<MyTempPage> {
               ),
               Text(
                 'id = $tempId',
-                style: Style.commonTextStyle,
+                style: Styles.commonTextStyle,
               ),
               Container(
                 margin: EdgeInsets.only(top: 16.0),
