@@ -58,11 +58,11 @@ class CommentPage extends StatelessWidget{
 
           children: <Widget>[
              Text(
-                 document.data['author'] + ": "+ document.data['title'],
+                 document['author'] + ": "+ document['title'],
                  style:Theme.of(context).textTheme.title)
             ,
             Text(
-                DateFormat("dd-MM-yyyy HH:mm").format(document['creationDate'].toDate())
+                document['creationDate']
             ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 8,horizontal: 0),
@@ -225,15 +225,17 @@ class AddCommentPage extends StatelessWidget{
 
     final formState = _formKey2.currentState;
     if(formState.validate()){
+      formState.save();
       var data = <String, String> {
         "title": _title,
-        "creationDate": DateTime.now().toIso8601String(),
+        "creationDate": DateTime.now().toString(),
         "author": _author,
         "priority": _priority,
         "body": _message
       };
-      Firestore.instance.collection('posts').add(data).catchError((e) {
+      await Firestore.instance.collection('posts').add(data).catchError((e) {
       });
+
     }
   }
 
