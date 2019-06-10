@@ -41,7 +41,7 @@ List list = [
   {
     "id": "tempSubMenu",
     "name": "MenuItem4 - spanko",
-    "icon": Icons.airline_seat_individual_suite,
+    "icon": Icons.photo_album,
     "color": Colors.orange,
     "builder": (_) =>
     new GalleryPage()
@@ -57,7 +57,7 @@ List list = [
   {
     "id": "tempSubMenu",
     "name": "MenuItem6",
-    "icon": Icons.directions_run,
+    "icon": Icons.alarm,
     "color": Colors.orange,
     "builder": (_) =>
     new ConfessionPage()

@@ -3,11 +3,12 @@ Map<String, String> strings = {
   'commentSectionTitle': "Komentarz",
   'gallerySectionTitle': "Galeria",
   'calendarSectionTitle': "Kalendarz",
-  'confessionSectionTitle': "Spowiedź",
+  'confessionSectionTitle': "Spowiedź - nie zwlekaj!",
   'pleaseWaitMessage': "Proszę czekać",
   'doodleLink': "https://dasandal.doodle.com/poll/2htk76vv6hubvi6v",
   'signInMessage': "Zaloguj się",
   'signUpMessage': "Zarejestruj",
+  'confessButtonMessage': "Zapisz się",
   'incorrectEmailInput': "Nieprawidłowy adres e-mail",
   'incorrectPasswordInput': "Podane hasło jest za krótkie",
   'email' : "E-mail",
@@ -15,5 +16,6 @@ Map<String, String> strings = {
   'chooseImageMessage': "Wybierz zdjęcie",
   'incorrectCredentials': "Nieprawidłowy e-mail i/lub hasło",
   'jsonImagesFirestorePath': "images/",
-  'unknownAuthor': "Nieznany"
+  'unknownAuthor': "Nieznany",
+  'donWaitForeverMessage':"Nie czekaj na ostatnią chwilę!"
 };

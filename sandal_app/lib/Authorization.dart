@@ -140,15 +140,13 @@ class _ChooseImagePageState extends State<ChooseImagePage>{
       StorageUploadTask uploadTask = ref.putFile(_chosenImage);
 
       var url =  await(await uploadTask.onComplete).ref.getDownloadURL();
-
-      ;
       var data = <String, String>{
         "title": fileName,
         "creationDate": DateTime.now().toIso8601String(),
         "url": url
       };
       //TODO: RANDOM DOCUMENT NAMES, otherwise we'll be uploading same image over and over again
-      final documentReference = Firestore.instance.document('images/6');
+      final documentReference = Firestore.instance.document('images/'+fileName);
       documentReference.setData(data).whenComplete((){
         print("added doc");
       }).catchError((e)=>print(e));
@@ -196,6 +194,4 @@ class _ChooseImagePageState extends State<ChooseImagePage>{
       )
     );
   }
-
-
 }

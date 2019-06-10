@@ -103,7 +103,7 @@ class GroupDetailPage extends StatelessWidget {
               ),
               new Text(group.description,
                 style: Styles.commonTextStyle,
-                // TODO: To justify or not to justify?
+                // TODO: To justify or not to justify? Justify.
                 textAlign: TextAlign.justify,
               ),
             ],
