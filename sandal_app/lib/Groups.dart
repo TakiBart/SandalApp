@@ -18,7 +18,7 @@ class GroupsPage extends StatelessWidget {
       // TODO: Make one appbar for whole app
       appBar: AppBar(
         title: Text(title,
-          style: Style.titleTextStyle,
+          style: Styles.titleTextStyle,
         ),
         iconTheme: IconThemeData(
           color: colors['appbarIconTheme'],

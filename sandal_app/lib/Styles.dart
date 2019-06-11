@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 // TODO: (Not that important) Think about these styles.
 
-class Style {
+class Styles {
   static final baseTextStyle = const TextStyle();
   static final smallTextStyle = commonTextStyle.copyWith(
     fontSize: 9.0,

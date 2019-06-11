@@ -103,7 +103,7 @@ class _CalendarGeneralPageState extends State<CalendarGeneralPage> with TickerPr
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title,
-          style: Style.titleTextStyle,
+          style: Styles.titleTextStyle,
         ),
         iconTheme: IconThemeData(
           color: colors['appbarIconTheme']

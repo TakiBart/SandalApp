@@ -1,22 +1,32 @@
+import 'package:Sandal/strings.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 import './mainMenuList.dart' as mainMenuItemsList;
 import './Styles.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-void main() => initializeDateFormatting().then((_) => runApp(MyApp()));
+void main(){
+  initializeDateFormatting();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown
+  ]);
+
+  runApp(MyApp());
+}
 
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'DA Sandał',
+      title: strings['appTitle'],
       theme: ThemeData(
         primarySwatch: Colors.orange,
       ),
-      home: MyHomePage(title: 'DA Sandał'),
+      home: MyHomePage(title: strings['appTitle']),
     );
   }
 }
@@ -36,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(
           widget.title,
-          style: Style.titleTextStyle,
+          style: Styles.titleTextStyle,
         ),
       ),
       body: Center(

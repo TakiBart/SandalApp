@@ -1,3 +1,4 @@
+import 'package:Sandal/strings.dart';
 import 'package:flutter/material.dart';
 
 import './tempSubMenu.dart';
@@ -5,6 +6,7 @@ import './Groups.dart';
 import './ConfessionPage.dart';
 import 'GalleryPage.dart';
 import './CalendarGeneral.dart';
+import './CommentPage.dart';
 
 List list = [
   {
@@ -14,13 +16,7 @@ List list = [
     // TODO: Ikona będzie pokolorowana czy przekazujemy kolor (albo dwa)?
     "color": Colors.orange,
     "builder": (_) =>
-//    new MyTempPage(
-//      tempId: "tempSubMenu",
-//      tempName: "Komentarz",
-//      tempIcon: Icons.comment,
-//      tempColor: Colors.orange,
-//    )
-      new CommentsSectionPage()
+      new CommentPage()
   },
   {
     "id": "tempSubMenu",
@@ -45,7 +41,7 @@ List list = [
   {
     "id": "tempSubMenu",
     "name": "MenuItem4 - spanko",
-    "icon": Icons.airline_seat_individual_suite,
+    "icon": Icons.photo_album,
     "color": Colors.orange,
     "builder": (_) =>
     new GalleryPage()
@@ -56,12 +52,12 @@ List list = [
     "icon": Icons.calendar_today,
     "color": Colors.orange,
     "builder": (_) =>
-      new CalendarGeneralPage(key: Key('key'), title: 'Kalendarz'),
+      new CalendarGeneralPage(key: Key('key'), title: strings['calendarSectionTitle']),
   },
   {
     "id": "tempSubMenu",
     "name": "MenuItem6",
-    "icon": Icons.directions_run,
+    "icon": Icons.alarm,
     "color": Colors.orange,
     "builder": (_) =>
     new ConfessionPage()
