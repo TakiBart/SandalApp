@@ -74,41 +74,45 @@ class CommentPage extends StatelessWidget{
                   maxLines: 2,
               )
             )
-
           ]),
       trailing: Icon(Icons.arrow_forward),
       onTap: () =>{
-        Navigator.push((context), MaterialPageRoute(builder: (context) => _CommentDetailsPage(document['title'],document['author'],document['body'])))
+        Navigator.push((context), MaterialPageRoute(builder: (context) => _CommentDetailsPage(document['title'],document['body'])))
       },);
   }
 }
 class _CommentDetailsPage extends StatelessWidget{
   String title;
-  String author;
   String body;
 
-  _CommentDetailsPage(String title, String author, String body){
+  _CommentDetailsPage(String title, String body){
     this.title=title;
-    this.author=author;
     this.body=body;
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(title),
+          title: Text(
+              title,
+              style: Styles.headerTextStyle),
           iconTheme: IconThemeData(
             color: MyColors.appbarIconTheme,
           ),
         ),
         body:
         Container(
-          child: Column(
-            children: <Widget>[
-              Text(author),
-              Text(body),
-            ],
-          ),
+          child: Padding(
+            padding: EdgeInsets.all(15),
+            child:Column(
+              children: <Widget>[
+                Text(body,
+                softWrap: true,
+                textAlign: TextAlign.justify,
+                style: TextStyle(inherit: true, fontSize: 18)),
+              ],
+            ),
+          )
         )
 
     );
@@ -122,11 +126,11 @@ class AddCommentPage extends StatelessWidget{
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Dodaj komentarz",
+          strings['addCommentPageTitle'],
            style: Styles.titleTextStyle,),
         iconTheme: IconThemeData(
           color: MyColors.appbarIconTheme,
-        ),//TODO: Change to strings['addCommentPageTitle']
+        ),
       ),
       body: Form(
         key: _formKey2,
@@ -222,7 +226,6 @@ class AddCommentPage extends StatelessWidget{
     );
   }
   void _sendMessage() async {
-
     final formState = _formKey2.currentState;
     if(formState.validate()){
       formState.save();

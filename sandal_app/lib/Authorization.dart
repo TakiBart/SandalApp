@@ -105,7 +105,6 @@ class _LoginPageState extends State<LoginPage>{
       try{
         LoginPage._user = await FirebaseAuth.instance.signInWithEmailAndPassword(email: _email, password: _password);
         Navigator.pop(context);
-//        Navigator.push(context, MaterialPageRoute(builder: (context)=> new ChooseImagePage()));
       } catch (exception){
         print(exception.toString());
       }
@@ -139,10 +138,8 @@ class _ChooseImagePageState extends State<ChooseImagePage>{
         "creationDate": DateTime.now().toIso8601String(),
         "url": url
       };
-      final documentReference = Firestore.instance.document('images/'+fileName);
-      documentReference.setData(data).whenComplete((){
-        print("added doc");
-      }).catchError((e)=>print(e));
+      await Firestore.instance.collection('images').add(data).catchError((e) {
+      });
     }
   }
   @override

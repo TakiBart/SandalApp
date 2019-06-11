@@ -24,6 +24,7 @@ Map<String, String> strings = {
   'title': "Tytuł",
   'messageBody': "Wiadomość",
   'author': "Autor",
-  'submitButtonText': "Wyślij"
+  'submitButtonText': "Wyślij",
+  'addCommentPageTitle': "Dodaj komentarz"
 
 };
